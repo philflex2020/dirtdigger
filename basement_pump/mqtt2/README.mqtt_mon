@@ -1,0 +1,165 @@
+
+THis is an attempt to get a self documenting/self reporting iot cluster working.
+
+The udp server will be responsible for broadcasting a "who are you" message to collect all the hosts
+There will be a udp_monitor on each host
+
+The  udp_monitor on each host  will then use mqtt to ask each task for services
+
+/udp/report  -- get applications
+
+then each application will be asked for interface details
+
+
+
+
+mqtt_udpsrv.py
+
+generates a udp broadcast
+{
+  "cmd":"status",
+  "replyto":"pibot01",
+  "topic":"/stat/data",
+   "id":1241
+ }
+
+mqtt_udp_mon.py listens to the udp broadcast, enhances the data and sends
+this on to the local topic /udp/report
+
+getapps - returns a list of apps
+app/get interfaces  returns a list of interface topics
+app/get/interface inputs
+app/get/interface outputs
+app/get/interface functions
+app/get/interface controls
+
+{
+  "hostname": "pibot01",
+  "replyto": "pibot01",
+  "cmd": "getstatus",
+  "ipaddr": "192.168.1.50",
+  "topic": "/stat/data",
+  "extaddr": "173.95.174.120",
+  "id": 1234
+}
+
+
+each function receives the message  on topic == "/udp/report"
+then adds some enhancement
+{
+ "function": "display_driver",
+ "inputs": "/display",
+ "hostname": "pibot01",
+ "replyto": "pibot01",
+ "outputs": "/dbuts",
+ "cmd": "getstatus",
+ "ipaddr": "192.168.1.50",
+ "topic": "/stat/data",
+ "control": "/dcontrol",
+ "extaddr": "173.95.174.120",
+ "id": 2170
+ }
+
+
+python mqtt_udpsrv.py  - create requests
+
+python mqtt_udp_mon.py - converts to /udp/report
+
+python mqtt_display_report.py reply to /udp/report
+
+
+
+
+
+
+Here is a more detailed example
+
+We have some GPIOS managed by mqtt_gpio.py
+
+this service is running on pizero2
+
+
+25,23 are outputs
+17 and 22 are pulldown inputs
+
+/pizero2/get/gpio/input will get all the inputs
+/get/gpio/input/chan will get all the inputs
+/set/gpio/inputs {chan1,2,)   will set a gpio as an input
+/set/gpio/outputs (chan a,b,c) will set selected outputs
+
+inputs can be set up to trigger a message on a change
+
+the udb broadcast will identify all hosts
+each host will tell its local services to respond
+
+the monitor will collect all host name responses
+/pizero1 192.168.1.2
+/pizero2 192.168.1.3
+
+each host will have services
+/pizero1/gpio
+/pizero1/ain
+/pizero1/dac
+/pizero1/dht22
+/pizero1/sonar
+
+each service will have /get /set and /control interfaces
+
+/pizero1/gpio/control " output ..... pwm... input .... "
+
+output
+     name        pump_drive
+     pin         25
+     init        0
+     pull down
+     single
+
+pwm
+     name        sonar_angle
+     pin         28
+     init        20   (20%)
+     period      1000
+     pol         norm
+
+input
+     name        sonar_angle
+     pin         22
+     on_change   /pizero1/gpio/input/sonar_angle
+     
+
+     
+an input can be set to scan at an interval or report when it changes
+
+
+
+So mqtt2_gpio.py will be completely configurable
+
+listen to /udp/report
+listen to "host"/gpio/setup
+
+
+
+
+
+
+
+
+MQTT_SERVER = "127.0.0.1"
+GPIO_PATH = "GPIO_out"
+SW_PATH = "SWITCH_in"
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(chan25, GPIO.OUT)
+GPIO.setup(chan23, GPIO.OUT)
+GPIO.setup(chan17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(chan22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+#pin 11  input
+chan17 = 17
+#pin 22  
+chan25 = 25
+#pin 13  input
+chan22 = 27
+#pin 16
+chan23 = 23

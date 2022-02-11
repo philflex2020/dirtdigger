@@ -1,0 +1,14 @@
+sudo apt-get install gawk
+# install rt patch
+sudo rm -r /boot/overlays
+sudo rm -r /lib/firmware
+cd /tmp
+wget http://download.frank_durr.de/kernel-4.4.9-rt17.tgz
+tar xvf kernel-4.4.9-rt17.tgz
+cd /boot
+sudo cp -rd * /boot/
+cd ../lib
+sudo cp -rd * /lib
+sudo /sbin/reboot
+
+

@@ -1,0 +1,24 @@
+#!/bin/sh
+/bin/sleep 120
+echo " hostname"                     >/tmp/log/mqtt_email2.txt
+hostname                            >>/tmp/log/mqtt_email2.txt
+echo " after startup "              >>/tmp/log/mqtt_email2.txt
+
+echo " mqtt_lcd.out"                >>/tmp/log/mqtt_email2.txt
+cat /tmp/log/mqtt/mqtt_lcd.out      >>/tmp/log/mqtt_email2.txt
+echo " mqtt_lcd_send.out"           >>/tmp/log/mqtt_email2.txt
+cat /tmp/log/mqtt/mqtt_lcd_send.out >>/tmp/log/mqtt_email2.txt
+echo " mqtt_adc.out"                >>/tmp/log/mqtt_email2.txt
+cat /tmp/log/mqtt/mqtt_adc.out      >>/tmp/log/mqtt_email2.txt
+echo " mqtt_gpio.out"               >>/tmp/log/mqtt_email2.txt
+cat /tmp/log/mqtt/mqtt_gpio.out     >>/tmp/log/mqtt_email2.txt
+
+echo " ifconfig"                    >>/tmp/log/mqtt_email2.txt
+ifconfig -a                         >>/tmp/log/mqtt_email2.txt
+echo " iwconfig"                    >>/tmp/log/mqtt_email2.txt
+iwconfig                            >>/tmp/log/mqtt_email2.txt
+echo " jobs"                        >>/tmp/log/mqtt_email2.txt
+ps ax                               >>/tmp/log/mqtt_email2.txt
+
+python /home/pi/work/dirtdigger/email_test/send_file.py /tmp/log/mqtt_email2.txt "crawl pump after startup message"
+

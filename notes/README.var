@@ -1,0 +1,106 @@
+Vars are exciting.
+    Well almost.
+
+A simple Var is a Digital intput or  output 
+
+     dir  (in/out)
+     pull up   (hi / low / off)
+     pin
+     device
+     value
+
+an Analog input or output is almost the same
+
+     dir  (in/out)
+     //pull up   (hi / low / off)
+     channel (pin)
+     device
+     value
+     we can add  some filters here
+     d_v  difference between this and last
+     i_v integral over time
+     avg filtered average
+     filter operation
+     max
+     min
+     
+A location (x,y,z)
+   this can also be speed, accel etc.
+
+A vector (e,a,d)
+
+An int value somewhere
+
+An float value somewhere
+
+
+A Servo output
+
+     channel (pin)
+     device
+     value
+     moves
+
+A Range Sensor
+
+    trigger pin/device
+    sense pin/device
+    value
+
+
+An Lirc Sensor
+
+   trigger pin/device
+   type
+   input pin/device
+   last code
+   code history
+
+..etc
+
+
+We will also consider some other types of vars
+
+A list
+   This is a group of similar items but it is kept in order
+
+A group
+  This is a group of different items (may be the same as a list )
+
+A robot arm could be a group
+  base
+  joint 1 + arm 1
+  joint 2 + arm 2
+  wrist
+  gripper
+  
+
+A function
+  This will perform an operation on one or more variables
+  and produce one or more outputs.
+  The pointers to the variables used will be in the form of a
+  list for the function.
+
+  Example given a list of sensors
+  check range of each and alert if less thab a mimimum value.
+
+A thread
+ This will expect a frequency and a list of functions to execute
+ An enable and a trigger var can also be setup.
+
+ 
+
+The varTypes command will show the different vartypes available
+
+
+Once defined a group can be placed in a group of groups to build up mode complex object.
+
+
+Consider a gimbal
+   accel in (*3)
+   rate in  (*3)
+   mag in   (*3)
+   control function
+   servo out (x y z)
+
+

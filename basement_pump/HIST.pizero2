@@ -1,0 +1,278 @@
+    1  more /etc/network/interfaces
+    2  sudo nano /etc/network/interfaces
+    3  sudo nano /etc/wpa_supplicant/wpa_supplicant.conf 
+    4  ifconfig
+    5  ifconfig wlan0 up
+    6  sudo ifconfig wlan0 up
+    7  ifconfig wlan0
+    8  reboot
+    9  sudoreboot
+   10  sudo reboot
+   11  cd work/dht11/
+   12  cd Adafruit_Python_DHT/
+   13  cd examples/
+   14  ls 
+   15  sudo ./AdafruitDHT2.py 11 4
+   16  PING PIZERO1
+   17  ping pizero1
+   18  ssh pi@pizero1
+   19  cd work/dht11/Adafruit_Python_DHT/
+   20  sudo ./Adafruit_DHT2 11 4
+   21  sudo ./Adafruit_DHT2.py 11 4
+   22  cd examples
+   23  sudo ./Adafruit_DHT2.py 11 4
+   24  ls
+   25  sudo ./AdafruitDHT2.py 11 4
+   26  ping pizero1
+   27  ifconfig
+   28  ping 192.168.1.100
+   29  ping psw-pitest
+   30  ping pizero1
+   31  ls /var/log/ctab 
+   32  ls -l /var/log/ctab 
+   33  cat  /var/log/ctab 
+   34  ssh pizero1
+   35  cd work/dht11/
+   36  ls
+   37  cd Adafruit_Python_DHT/
+   38  ls
+   39  cd examples/
+   40  ls
+   41  sudo ./AdafruitDHT2.py 11 4
+   42  sudo ./AdafruitDHT2.py 12 4
+   43  sudo ./AdafruitDHT2.py 11 4
+   44  cd~/work
+   45  cd ~/work
+   46  mkdir pigpio
+   47  cd pigpio/
+   48  git clone https://github.com/joan2937/pigpio
+   49  ls
+   50  echo "git clone https://github.com/joan2937/pigpio" > getgit
+   51  cd pigpio/
+   52  ls
+   53  more README
+   54  more ../getgit 
+   55  sudo make install
+   56  man pig
+   57  man pigpiod
+   58  man pigs
+   59  history
+   60  ls
+   61  more README
+   62  tail /var/log/ctab 
+   63  sudo -u www-data crontab -l 
+   64  /usr/lib/dht11/get_data.py 
+   65  sudo /usr/lib/dht11/get_data.py 
+   66  sudo reboot
+   67  uptime
+   68  df -h
+   69  uptime
+   70  sudo apt-get install ansible
+   71  ls /var
+   72  find / -name "*.db"
+   73  cd work/
+   74  ls
+   75  mkdir dbb
+   76  cd dbb
+   77  sqlite3 /var/usr/db/datalog.db 
+   78  sqlite3 /var/usr/db/datalog.db .dump;
+   79  sqlite3 /var/usr/db/datalog.db .dump; > datalog.dump
+   80  sqlite3 help .dump
+   81  sqlite3 dump help
+   82  ls
+   83  more db.txt
+   84  more datalog.dump 
+   85  more dump
+   86  cp /var/usr/db/datalog.db .
+   87  sqlite3 datalog.db
+   88  more db.txt
+   89  sqlite3 datalog.db
+   90  ping psw-controller
+   91  ssh pi@psw-controller
+   92  ls
+   93  more file2.txt 
+   94  scp *.db  pi@psw-controller:/home/pi/work
+   95  sqlite3 datalog.db
+   96  ls -a ~/
+   97  more ~/.sqlite_history 
+   98  scp ~/.sqlite_history pi@psw-controller:/home/pi/work
+   99  sudo pigpiod
+  100  sudo crontab -l
+  101  crontab -l
+  102  man crontab
+  103  crontab root -l
+  104  crontab -u root -l
+  105  crontab -u pi -l
+  106  sudo crontab -u root -l
+  107  ls /var/www
+  108  ls /var/www/html
+  109  ls /var/www/html/index2.html 
+  110  more /var/www/html/index2.html 
+  111  ls /usr/
+  112  ls /usr/local/
+  113  ls /usr/local/bin
+  114  ls /usr/local/lib
+  115  find /usr -name "*.py"
+  116  ls work
+  117  ls work/dht11
+  118  ls work/dht11/Adafruit_Python_DHT/
+  119  ls
+  120  ls work/
+  121  ls /var
+  122  ls /var/tmp
+  123  find  /var -name "*.py"
+  124  sudo find  /var -name "*.py"
+  125  sudo find  /usr -name "*.py"
+  126  sqlite3 /var/usr/db/datalog.db 
+  127  ls work
+  128  ls 
+  129  ls work/common/
+  130  ls work/common/socks/
+  131  ls wor
+  132  ls work
+  133  ls work/dirtdigger/
+  134  ls work/dirtdigger/python/
+  135  ls work
+  136  ls work/dbb
+  137  ls work/dht11/
+  138  ls /var
+  139  ls /var/opt
+  140  ls /var/usr
+  141  ls /var/usr/db
+  142  ls /var/www/
+  143  ls /var/www/html/
+  144  ls /var/usr/
+  145  ls /var/lib/
+  146  ls /usr/
+  147  ls /usr/local/
+  148  ls /usr/local/bin
+  149  ls /usr/
+  150  ls /usr/bin/
+  151  ls /var/www
+  152  find work -name monitor.py
+  153  sudo crontab -u www-data -l
+  154  pwd
+  155  name README.templog
+  156  nano README.templog
+  157  mkdir work/temp
+  158  mkdir work/templogger
+  159  cd work/templogger
+  160  cp /usr/lib/dht11/get_data.py .
+  161  sudo apt-get update 
+  162  cd ../
+  163  mkdir sensors
+  164  cd sensors
+  165  sqlite3 sensors.db
+  166  emacs sensors.py
+  167  sudo apt-get install emacs
+  168  emacs sensors.py
+  169  bg
+  170  python createTableData.py 
+  171  ls
+  172  python createTableDht.py 
+  173  python insertDHT.py 
+  174  mv insertHDT.py insertDHT.py 
+  175  python insertDHT.py 
+  176  python insertDataTableDHT.py 
+  177  python 
+  178  python DHT22_test.py 
+  179  touch appDHT.py
+  180  python appDHT.py
+  181  python logDHT.py&
+  182  python queryTableDHT.py&
+  183  fg
+  184  python queryTableDHT.py
+  185  python lastLogDataTableDHT.py 
+  186  sudo apt-get install python-flask
+  187  mkdir dhtwebserver
+  188  cd dhtwebserver
+  189  mkdir static
+  190  mkdir templates
+  191  ls
+  192  python appDhtWebServer.py 
+  193  cd ../
+  194  mkdir justgage
+  195  cd justgage/
+  196  wget http://justgage.com/download/justgage-1.2.2.zip
+  197  echo "wget http://justgage.com/download/justgage-1.2.2.zip" > README
+  198  ls
+  199  mkdir unzip
+  200  cd unzip/
+  201  unzip ../justgage-1.2.2.zip 
+  202  cp justgage-1.2.2/*.js ../../dhtwebserver/static/
+  203  cd ../../dhtwebserver
+  204  ls templates/
+  205  cp templates/index.html templates/index_save.html 
+  206  emacs templates/index.html
+  207  python appDhtWebServer.py 
+  208  sudo apt-get install python-matplotlib
+  209  cd ../
+  210  ls
+  211  mkdir dhtWebHist
+  212  mkdir dhtWebHist/templates
+  213  mkdir dhtWebHist/statis
+  214  mkdir dhtWebHist/static
+  215  emacs dhtWebHist/templates/index.html
+  216  bg
+  217  ls
+  218  cd dhtWebHist/
+  219  python appDhtWebHist.py 
+  220  bg
+  221  cp ../dhtwebserver/static/*.js static
+  222  wget https://raw.githubusercontent.com/Mjrovai/RPI-Flaskping 192.168.1.169
+  223  iwconfig
+  224  iwscan
+  225  sudo iwscan
+  226  iwconfig
+  227  reboot
+  228  ps ax
+  229  df -h
+  230  ls /usr/local/bin
+  231  mkdir /tmp/dl
+  232  sudo cp /tmp/dl/run* /usr/local/bin
+  233  more /tmp/dl/run_cpump
+  234  ls /tmp/dl/mqtt/*.py
+  235  sudo mkdir /usr/local/mqtt
+  236  sudo cp  /tmp/dl/mqtt/*.py /usr/local/mqtt
+  237  /usr/bin/python /usr/local/mqtt/mqtt_lcd.py  
+  238  sudo apt-get update
+  239  cd work
+  240  sudo apt-get upgrade
+  241  sudo apt-get update
+  242  sudo apt-get --fix-missing upgrade 
+  243  git clone https://github.com/eclipse/paho.mqtt.python.git
+  244  cd paho.mqtt.python/
+  245  python setup.py install
+  246  sudo python setup.py install
+  247  /usr/bin/python /usr/local/mqtt/mqtt_lcd.py  
+  248  /usr/bin/python /usr/local/mqtt/mqtt_lcd_send.py 
+  249  python -m pip install psutil
+  250  /usr/bin/python /usr/local/mqtt/mqtt_lcd_send.py 
+  251  sudo apt-get install -y mosquitto mosquitto-clients
+  252  sudo wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+  253  sudo apt-key add mosquitto-repo.gpg.key
+  254  cd /etc/apt/sources.list.d/
+  255  sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+  256  sudo apt-get update
+  257  sudo apt-get install -y mosquitto mosquitto-clients
+  258  cd -
+  259  /usr/bin/python /usr/local/mqtt/mqtt_lcd_send.py 
+  260  /usr/bin/python /usr/local/mqtt/mqtt_adc.py 
+  261  cd ~/work/Adafruit_Python_
+  262  cd ~/work/Adafruit_Python_ADS1x15/
+  263  ls
+  264  more README.md 
+  265  more setup.py 
+  266  sudo python setup.py 
+  267  sudo python setup.py install
+  268  /usr/bin/python /usr/local/mqtt/mqtt_adc.py 
+  269  /usr/bin/python /usr/local/mqtt/mqtt_gpio.py 
+  270  echo "sh /usr/local/bin/run_cpump > /tmp/run_pump 2>&1" >> /etc/rc.local
+  271  sudo echo "sh /usr/local/bin/run_cpump > /tmp/run_pump 2>&1" >> /etc/rc.local
+  272  sudo' echo "sh /usr/local/bin/run_cpump > /tmp/run_pump 2>&1" >> /etc/rc.local'
+  273  sudo nano /etc/rc.local 
+  274  sudo sh /usr/local/bin/run_cpump 
+  275  cd ~/work/dirtdigger/
+  276  git pull
+  277  cd basement_pump/
+  278  history > HIST.pizero2

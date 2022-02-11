@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     
+<script src="{{ url_for('static', filename='js/jquery-1.12.4.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.js') }}"></script>
+<script src="{{ url_for('static', filename='js/gauge.min.js') }}"></script>
+<script src="{{ url_for('static', filename='fonts/fonts.css') }}"></script>
+
+</head>
+
+<body style="background:#aefff4">
+
+
+<left><canvas id="speedGaugeCanvas"></canvas></left>
+<right><canvas id="posGaugeCanvas"></canvas></right>
+
+<center><button onclick="animateGauges_bu()">Animate</button></center>
+<p style="text-align:center;">Click the animate button to animate the gauge above based on the received value</p>
+
+<h1 style="text-align:center;">Testing RC Gauge JS</h1>
+
+<h2 style="text-align:center; color:blue">Value at refresh: {{ value_at_refresh }}</h2>
+
+
+<h2 style="text-align:center; color:#315b7d">random value:</h2>
+<h2 style="text-align:center; color:#315b7d" id='random'>waiting for incoming data</h2>
+
+<script>
+
+
+  $(document).ready(function(){
+
+	//set up switch server sent event endpoint
+	//this part will receive all incoming json data streams from the Pi
+
+	var incomingData = new EventSource("{{ url_for('stream')}}");
+	incomingData.onmessage = function(e) {
+
+	// data variable is declared as GLOBAL so that function animateGauges could use it
+	// "var" is removed from the declaration "var data" 
+	// if you declare it as "var data", then it is a local variable
+
+	data = $.parseJSON(e.data); 
+	//console.log(data);
+	
+	// was #random
+
+  	$('#speed').text(data.num_json.toFixed(2))
+
+
+}; // close EventSource function
+}); // close document ready function  
+
+</script>
+	    
+<script>
+	    
+
+    var randomGauge = new RadialGauge({
+        renderTo: 'speedGaugeCanvas',
+        width: 300,
+        height: 300,
+        units: "0 speed",
+        startAngle: 70,
+        ticksAngle: 220,
+        colorPlate: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#3CA7DB",
+        needleType: "arrow",
+        needleStart: 0,
+        needleEnd: 75,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+        colorNeedle: "#3CA7DB",
+        colorNeedleEnd: "#2698CE",
+        colorNeedleCircleOuter: "#3CA7DB",
+        colorNeedleCircleOuterEnd: "#3CA7DB",
+//        barWidth: 5,
+//        colorBarProgress: '#3CA7DB',
+//        colorBar: '#A8D3D5',
+
+        colorMajorTicks: ["#A8D3D5", "#ffffff", "#ffffff", "#ffffff", "#ffffff",
+            "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#A8D3D5"],
+        colorMinorTicks: "#ffffff",
+
+        // Вопрос в мин и макс значениях, при этих значениях анимация не работает
+        minValue: 0,
+        maxValue: 5000,
+
+        majorTicks: ["0","1000","2000","3000","4000", "5000"],
+        minorTicks: "250",
+        strokeTicks: true,
+
+        highlights: [
+            {
+                "from": 0,
+                "to": 4000,
+                "color": "#A8D3D5"
+            },
+	    {
+                "from": 4001,
+                "to": 5000,
+                "color": "#FFD3D5"
+            }
+
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        animation: true,
+        animationRule: "linear",
+        valueBox: true,
+        borders: false,
+        borderShadowWidth: 0,
+        value: 0,
+        animateOnInit: true,
+        animatedValue: true,
+        listeners: {
+            value: function(value) {
+		    // EDIT THIS PART : to display the numeric character below the gauge needle
+                this.update({ units: parseFloat(value.toFixed(2), 100) + ' rpm' });
+            }
+        }
+
+    }).draw();
+
+    var randomGauge2 = new RadialGauge({
+        renderTo: 'posGaugeCanvas',
+        width: 300,
+        height: 300,
+        units: "0 angle",
+        startAngle: 70,
+        ticksAngle: 220,
+        colorPlate: "#ffffff",
+        colorUnits: "#3CA7DB",
+        colorNumbers: "#3CA7DB",
+        needleType: "arrow",
+        needleStart: 0,
+        needleEnd: 75,
+        needleWidth: 4,
+        needleCircleSize: 10,
+        needleCircleInner: false,
+        needleCircleOuter: true,
+        needleShadow: false,
+        colorNeedle: "#3CA7DB",
+        colorNeedleEnd: "#2698CE",
+        colorNeedleCircleOuter: "#3CA7DB",
+        colorNeedleCircleOuterEnd: "#3CA7DB",
+//        barWidth: 5,
+//        colorBarProgress: '#3CA7DB',
+//        colorBar: '#A8D3D5',
+
+        colorMajorTicks: ["#A8D3D5", "#ffffff", "#ffffff", "#ffffff", "#ffffff",
+            "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#A8D3D5"],
+        colorMinorTicks: "#ffffff",
+
+        // Вопрос в мин и макс значениях, при этих значениях анимация не работает
+        minValue: 0,
+        maxValue: 1,
+
+        majorTicks: ["0","0.25","0.5","0.75","1"],
+        minorTicks: "50",
+        strokeTicks: true,
+
+        highlights: [
+            {
+                "from": 0,
+                "to": 1,
+                "color": "#A8D3D5"
+            }
+        ],
+        //
+        highlightsWidth: 25,
+        numbersMargin: 12,
+        animation: true,
+        animationRule: "linear",
+        valueBox: false,
+        borders: false,
+        borderShadowWidth: 0,
+        value: 0,
+        animateOnInit: true,
+        animatedValue: true,
+        listeners: {
+            value: function(value) {
+		    // EDIT THIS PART : to display the numeric character below the gauge needle
+                this.update({ units: parseFloat(value.toFixed(2), 100) + ' deg' });
+            }
+        }
+
+    }).draw();
+
+
+
+    var timers = [];
+
+    function animateGauges() {
+        document.gauges.forEach(function(gauge) {
+            timers.push(setInterval(function() {
+		// EDIT THIS PART : put any data that you want to display here
+		// for this example I'm using "data.num_json" that came from our Python code
+                gauge.value = data.num_json;
+
+            }, gauge.animation.duration + 500));
+        });
+    }
+
+// just ignore the function below as it is the original function that came with this code
+// you may delete the function below because it is not being used 
+
+    function animateGauges_bu() {
+        document.gauges.forEach(function(gauge) {
+            timers.push(setInterval(function() {
+		if (gauge.options['renderTo'] == 'speedGaugeCanvas') {
+		   console.log(gauge.options['renderTo']);
+                   gauge.value = Math.random() *
+                      (gauge.options.maxValue - gauge.options.minValue) +
+			gauge.options.minValue;
+		}
+            }, gauge.animation.duration + 50));
+        });
+    }
+
+
+
+
+</script>
+
+
+</body>
+</html>
+
+

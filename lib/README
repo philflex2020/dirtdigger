@@ -1,0 +1,197 @@
+The system
+
+The object of this system is to have dynamically defined design based on text input.
+The user will be able to connect via a socket to monitor and modify the system.
+THe system can also be configured by one or more text files.
+
+This means that the system is a little more complex than a simple hard coded program design but it does allow the system to be setup and controlled dynamically.
+
+Certain Objects are hard coded but they can be controlled from the text input.
+
+COnsider a compile time motor definition under arduino
+
+UC_DCMotor leftMotor1(3, MOTOR34_64KHZ);
+
+This is specifying a DCMotor called leftMOtor1 assigned to pin 3 of a type MOTOR34_64KHZ.
+
+This system would be able to create  such a motor with an add(Var) command
+
+var leftMotor1 UC_DCMotor [key LM1]
+setup leftMotor1 type MOTOR34_64KHZ pin 3  run 1 speed 200 time 500
+var rightMotor2 UC_DCMotor [key RM1]
+setup rightMotor2 type MOTOR34_64KHZ pin 4  run 1 speed 200 time 500
+
+The motors are setup to run for  500 mS
+
+The "run" command will then trigger the motors into operation
+
+run leftMotor1 rightMotor2
+
+If the key option is used then a setupV command can be used 
+
+This will create variables in the system to control the motor operation
+
+var rightMotor2 UC_DCMotor key RM1
+
+setup rightMotor2 type MOTOR34_64KHZ pin 4
+setupV rightMotor2 run 1 speed 200 time 500 go 0
+
+setupV will create RM1_run, RM1_speed RM1_time and RM1_go variables
+
+other components can use read and write operations on these variables to
+control the motor.
+
+the "setup" command can also direct the motor controller to a variable to get its value from
+
+setupV rightMotor2 run 1 speed @mySpeedVar time 500 go 0
+
+setup rightMotor2 help
+
+    will show the setup options available for the Motor
+
+setup rightMotor2 config
+    will show the current setup options
+
+
+
+Lets consider a simple system
+
+move forward until blocked.
+When blocked turn right 90 degrees move 3 inches turn left and try to keep going
+After 4 turns stop
+
+
+We will have left and right motors.
+Each motor can have a speed and direction.
+We will have a sensor that will show distance
+
+System has a sensor
+             left motor
+	     right motor
+
+sensor has a trigger gpio, an echo gpio and a distance measurement
+
+motor has a drive gpio  a direction gpio a speed request
+   we control the speed by pulsing the drive gpio
+
+
+We will have a system move function that will go forward / back/ stop or turn left or right by a number of degrees at a certain speed.
+The move can have two results
+
+  completed
+  blocked
+
+
+So the request is "move forward 12 inches "
+
+the loop to do this is
+   measure block
+     if block < min distance  set blocked then complete
+   if distance < min distance clear blocked then complete
+   if block < dest then move = block - min distance
+   else move = max_move
+   move both motors by move
+   
+This loop can be placed in a hard coded system move command
+
+It can have two results done and blocked.
+it will have a distance and a speed request (it can also have a delta or curve)
+It will show progress and block distamce (and block angle)
+
+
+
+S1sens Sensor  a_distance_sensor key S1
+send S1sens setup trigger 22 echo 23  run 10
+send S1sens init
+
+send Sense1 show
+
+// after this time the Float S1output will have the result of the measurement
+
+M1motor Motor "Left Motor" key M1
+send M1motor setup dir 17 out 18 speed 0 time 0 run 10
+send M1motor init
+
+M2motor Motor "Right Motor" key M2
+send M2motor setup dir 19 out 20 speed 0 time 0 run 10
+send M2motor init
+
+
+Now we want to create a move engine with two motors and one or more sensors 
+
+
+Mv1 Mover " a movement engine" key Mv1
+send Mv1 setup left M1motor right M2motor sens1 S1sens run 20
+send Mv1 limit  sens1 20
+send Mv1 onlimit  sens1 clear
+send Mv1 onlimit  sens1 turn 90
+send Mv1 onlimit  sens1 fwd 20
+send Mv1 onlimit  sens1 turn -90
+
+
+So we get the mover to go somewhere
+Mx1 Move " a move definition" setup  speed 200 fwd 200
+Mx2 Move "another move def" setup  speed 200 back 200
+Mx3 Move "stopped move def" setup  speed 200 stop
+//send Mv1 add move Mx1
+
+
+We can set up another  to deal with  progress
+
+P1man Manager  " a sample manager"
+send P1man on Mv1 blocked move Mx2
+send P1man on Mv1 done    move Mx3
+send P1man on Mv1 run    move Mx1
+
+
+
+
+// this is all done by the sensor "setup" command
+S1trigger DigOut "trigger for sensor1" 
+send S1trigger pin 22
+S1echo DigIn "echo for sensor1" 
+send S1echo pin 23
+S1output Float "output for sensor1" 
+S1limit Float "limit for sensor1" 
+S1count Int "count for sensor1" 
+S1sens Sensor  "a distance sensor" key S1
+//
+
+// this is the manual way of doing the MOtor setup
+// M2motor right
+M2motor Motor "Right Motor"
+
+M2dir DigOut "dir for motor2"
+send M2dir pin 19
+
+M2out DigOut "output pin for motor2" 
+send M2out pin 20
+
+M2speed Float "speed for motor2" 
+send M2speed val 0
+
+M2time Float "time for motor2" 
+send M2time val 0
+
+M2run Float "time run for motor2" 
+
+
+send M1motor  dir M1dir output M1out speed M1speed time M1time runtime M1run 
+send M1motor init
+
+
+send M1motor run 10
+
+
+
+
+
+
+
+
+   
+
+
+
+Sequencer has a counter 
+

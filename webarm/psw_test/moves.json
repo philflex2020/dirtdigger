@@ -1,0 +1,22 @@
+{
+    "move":{
+	"name":"move1",
+	"time":2000,
+	"servos": [
+	    {
+		"name":"servo1",
+		"dest": 234
+	    },
+	    {
+		"name":"servo3",
+		"dest": 1000
+	    },
+
+	    {
+		"name":"servo5",
+		"dest": 100
+	    }
+	]
+    }
+
+}

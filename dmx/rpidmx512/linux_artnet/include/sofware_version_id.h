@@ -1,0 +1,2 @@
+// Generated Sat Sep 29 13:39:57 CEST 2018
+static const uint32_t DEVICE_SOFTWARE_VERSION_ID=1538221197;

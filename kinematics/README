@@ -1,0 +1,29 @@
+kinetics...
+A crazy idea but ..
+we have a 3 joint robot arm.
+
+ we want to find what angles to set each joint for a requested X/Y location.
+
+This will have more than one solution making conventonal maths awkward.
+
+
+What we can do is rotate the base arm to each of 180 degrees and calculate the X, Y loc ation of the end of the arm.
+For each degree rotate the second arm 180 degrees , keeping in mind the angle set up be the base arm. this will give us an XY location for that arm.
+Repeat the same for the third arm.
+Add the Xoffsets and the Yoffsets for each arm to get the XY location for that combination of angles.
+
+NOte that we can simplyfy this still more by building up an index of angles and offsets for each arm, we'll do that next.
+
+The result will give us a very large array of outputs
+(5832000 locations)
+
+We do some work to make this bounded for smaller systems and make searches easier.
+
+The thing is connected to a web socket so we can ask for a XY and get suggested angles or ask for angles and get the XY location.
+
+With 3 arms we can get many solutions for a given XY location. move the XY point just a bit and we want the next solution that uses a minimun of arm movement.
+So given one solution we then run through the list of "next" solutions that uses teh smallest arm movement.
+
+
+Cool
+ 

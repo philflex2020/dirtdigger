@@ -1,0 +1,13 @@
+sudo apt-get update
+sudo apt-get install arduino
+
+OR magpi.cc/2tPw8ht  Download the ide
+
+Alternatively, open Chrome on your Raspberry Pi, head to magpi.cc/2tPw8ht, and click the Linux ARM link under ‘Download the IDE’. Extract the file to your /opt directory , then open a Terminal and run the install.sh script to install.
+
+cd Downloads/
+tar -xf arduino-1.8.3-linuxarm.tar.xz
+sudo mv arduino-1.8.3 /opt
+sudo /opt/arduino-1.8.3/install.sh
+
+You will find Arduino IDE under Menu > Programming. Open the app to start programming your Arduino board.

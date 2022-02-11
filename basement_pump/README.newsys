@@ -1,0 +1,39 @@
+sudo apt-get update
+sudo apt-get install emacs
+sudo apt-get install -y mosquitto mosquitto-clients
+
+
+pip install paho-mqtt
+pip install psutil
+
+sudo apt-get instal python-pip
+https://files.pythonhosted.org/packages/25/63/db25e62979c2a716a74950c9ed658dce431b5cb01fde29eb6cba9489a904/paho-mqtt-1.4.0.tar.gz 
+
+
+You need the GPIO  library
+
+cd ~/work
+
+git clone https://github.com/adafruit/Adafruit_Python_GPIO
+
+cd Adafruit_Python_GPIO
+remove ensurepip in setup.py
+sudo python setup.py install
+
+You need the ADS1x15 library
+
+git clone https://github.com/adafruit/Adafruit_Python_ADS1x15.git
+
+cd Adafruit_Python_ADS1x15
+sudo python setup.py install
+
+
+You need the DHT22 library
+
+git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+
+cd Adafruit_Python_DHT
+sudo python setup.py install
+
+pin 16 GPIO23
+(moved it to pin 12 GPIO18)

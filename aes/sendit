@@ -1,0 +1,2 @@
+rsync -av --partial -e "ssh -o Port=22022"   ~/work/aes phil@99.29.116.42:/mnt/sdf2/work/extron
+

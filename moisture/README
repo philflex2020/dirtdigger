@@ -1,0 +1,100 @@
+Moisture sensor.
+
+https://www.modmypi.com/blog/raspberry-pi-plant-pot-moisture-sensor-with-email-notification-tutorial
+
+VCC --> 3v3 (Pin 1)
+GND --> GND (Pin 9)
+D0 --> GPIO 17 (Pin 11)
+
+
+
+
+If you want to do this directly on your Raspberry Pi, you can clone the git like so:
+
+git clone git://github.com/modmypi/Moisture-Sensor
+
+If you have downloaded the script, you will need to extract the zip file. To do this, you will need to make sure you have unzip installed:
+
+sudo apt-get install unzip
+
+Then unzip the file:
+
+unzip master.zip
+
+Then change your working directory to the location of the moisture.py script:
+
+cd Moisture-Sensor-master
+
+If you have git cloned, you will need to change the current working directory to the location of moisture.py, do this like so:
+
+cd Moisture-Sensor
+
+Now we need to make a few changes within the script, so open the script up in an editor:
+
+nano moisture.py
+
+Have a read through the comments in the script, and edit the various variables that have been defined.
+
+To run the script simply run the following command from the same directory as the script:
+
+sudo python moisture.py
+
+So, if you've set all your variables, up and your potentiometer is set to the correct value, your Raspberry Pi will now email you when your plant's water is running dry!
+
+To test, just set your potentiometer to high, and check your inbox!
+
+
+Analoge system
+
+https://www.modmypi.com/blog/raspberry-pi-plant-pot-moisture-sensor-via-analogue-signals
+
+That’s it for the hardware setup, now on to some coding!!
+
+Software Setup
+
+To start with, we need to download some python code from Adafruit which will allow us to easily use their ADC.
+Adafruit have all of their example code in a single Git repository, so we’ll have to download it all, then find the code we actually need for our ADC.
+
+Start by making sure you have git installed on your raspberry Pi
+
+sudo apt-get install git
+
+Now we can download or “clone” the repository to our Pi (this simply downloads all the files from the repository, to our Pi)
+
+git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git
+
+Now we have all Adafruit’s code downloaded we need to find the code for our ADC. Move into the newly downloaded directory
+
+cd Adafruit-Raspberry-Pi-Python-Code
+
+Then from here, if we list the contents of the directory we should be able to find what we are looking for
+
+ls
+
+The Adafruit ADC we are using in this tutorial is an ADS1015. The first directory in the list is “Adafruit_ADS1x15”. That’s the one we want! So now we need to hop on in to that directory to see the code provided
+
+cd Adafruit_ADS1x15
+
+ls
+
+In this directory we can see a few different python scripts. The one we are interested in is called:
+
+ads1x15_ex_singleended.py
+
+We’ll be using this as our starting point to write our own script. If we run that script we should be able to see the voltage that our moisture sensor is reporting. To run the script simply enter
+
+sudo python ads1x15_ex_singleended.py
+
+To double check everything is working we can test the moisture sensor in the two extremes. Dry and wet.
+
+Start by removing the sensor probes from our plant, and suspend them in mid-air, so that nothing is touching them. Now run the above script. You should get a value > 3.00
+
+Now grab a glass of water, and carefully place the sensor probe in the water. DO NOT SUBMERGE THE WHOLE THING. Just make sure at least half of the two prongs are submerged. Run the above script again, and you should get a value < 0.50
+
+Hopefully you got similar readings. If you didn’t just go back and double check all the connections are secure and correct.
+
+If you did, then everything is setup correctly and you are ready to expand the example script to meet your requirements.
+
+How about adapting the digital moisture sensor to send the email alerts based on the value of the analogue reading?
+
+ 

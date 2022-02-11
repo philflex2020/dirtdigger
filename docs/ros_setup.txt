@@ -1,0 +1,98 @@
+   
+Start ROS Setup
+
+sudo sh -c 'echo "deb  http://packages.ros.org/ros/ubuntu  $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+sudo apt-get update
+
+sudo apt-get install -y python-rosdep python-rosinstall-generator python-wstool python-rosinstall build-essential  cmake
+
+sudo rosdep init
+rosdep update
+mkdir ~/ros_catkin_ws
+cd ~/ros_catkin_ws
+rosinstall_generator desktop --rosdistro melodic --deps --wet-only --tar > melodic-desktop-wet.rosinstall 
+wstool init -j8 src melodic-desktop-wet.rosinstall
+
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+
+cd ~/ros_catkin_ws/
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic -j2
+sudo apt-get install ntpdate
+ntpdate -q pi4001-01
+
+source /opt/ros/melodic/setup.sh
+roscore
+
+
+Joystick
+
+source /opt/ros/melodic/setup.bash
+mkdir -p ~/ros-joy_ws/src; cd ~/ros-joy_ws/src
+git clone https://github.com/ros-drivers/joystick_drivers.git
+sudo apt-get install -y libusb-dev
+sudo apt-get install -y libspnav-dev
+sudo apt-get install -y libbluetooth-dev
+sudo apt-get install -y libcwiid1 libcwiid-dev
+catkin_make
+catkin_make install
+source ~/ros-joy_ws/devel/setup.sh
+$rosrun joy joy_node
+
+$ rostopic list
+/diagnostics
+/joy
+/joy/set_feedback
+/rosout
+/rosout_agg
+
+
+$ rostopic echo /joy
+header: 
+  seq: 1
+  stamp: 
+    secs: 1579277657
+    nsecs: 775941998
+  frame_id: ''
+axes: [-0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+buttons: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+---
+header: 
+  seq: 2
+  stamp: 
+    secs: 1579277657
+    nsecs: 783953450
+  frame_id: ''
+axes: [-0.08842818439006805, 0.0, 0.0, 0.0, 0.0, 0.0]
+buttons: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+---
+
+
+ros osr
+
+mkdir -p /home/pi/osr_ws/src && cd /home/pi/osr_ws
+catkin_make
+cd /home/pi
+git clone https://github.com/nasa-jpl/osr-rover-code osr
+cd osr
+cd ROS/
+cp -a  led_screen osr osr_bringup osr_msgs /home/pi/osr_ws/src
+
+cd /home/pi/osr_ws/src/osr
+chmod +x  scripts/*.py
+cd /home/pi/osr_ws/
+
+source /home/pi/osr_ws/devel/setup.sh 
+sudo apt install -y python-rosinstall
+sudo apt install -y python-rosdistro
+sudo apt install -y python-rosinstall
+sudo apt install -y python-rosinstall-generator 
+rosinstall_generator sensor_msgs -rosdistro melodic -deps -wet-only -tar > melodic-sensor_msgs-wet.rosinstall
+rosinstall_generator sensor_msgs --rosdistro melodic --deps --wet-only --tar > melodic-sensor_msgs-wet.rosinstall
+wstool init src src melodic-sensor_msgs-wet.rosinstall 
+catkin_make
+catkin_make install
+

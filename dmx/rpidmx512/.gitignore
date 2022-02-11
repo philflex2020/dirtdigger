@@ -1,0 +1,63 @@
+# Object files
+*.o
+
+# Libraries
+lib*.a
+# Executables
+*.out
+*.a
+*.exe
+
+# Others 
+*.bak
+*.list
+*.lst
+*.map
+*.elf
+*.prefs
+
+*.txt
+*._txt
+*.txt_
+*.uid
+
+# Linux 
+.nfs*
+.nfs.*
+
+# Apple
+.DS*
+._.DS*
+._*
+
+# Eclipse
+.tracecompass
+
+# H2+/H3 binaries 
+uImage
+*.uImage
+orangepi*.*
+nanopi_neo.*
+
+# examples binaries
+# lib-i2c
+i2cdetect
+# lib-display
+detect
+lcd2004
+oled128x32
+ssd1306
+# lib-l6470
+get_set_param_test
+get_temp
+input_output
+limit_switch
+precise_move
+simple_move
+SparkFunGetSetParamTest
+# lib-pca9685
+servo
+simple
+# lib-tlc59711
+pwmled
+

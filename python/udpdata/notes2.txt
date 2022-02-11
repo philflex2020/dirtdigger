@@ -1,0 +1,163 @@
+Summary of udpdata design.
+
+Consider two items in a system.
+1  a touch panel (TP1) with an audio slider (Slider1)
+2  an endpoint (DEC1) with an audio output volume control (AudioOP1)
+ 
+
+
+When the touch panel slider is moved, the voulme control on the endpoint needs to be adjusted.
+
+The Touchpanel (TP1) is given a slider control (SL-1) and a slider feedback control (VSL-1).
+
+The slider is modified by the SL-1 value.
+The slider monitors the endpoint volume control and display it using the VSL-1 data
+
+The endpoint has a volume control VOL-1.
+When this is changed the output volume also changes.
+
+
+The udp data system manages the transfer of data between systems.
+It replaces the cumbersome ripc gm sis and portexp systems and the system overload of control, feedback and pub messages.
+
+The system works by defining data points attached to hardware of touchpanel compenents.
+These data ponts control the actual hardware or display representation on the  component.
+To transfer data between systems the hardware data point is linked to virtual data item contained in a data group.
+
+Changes to values on the endpoint result in a udp broadcast message being sent to the system.
+All systems listen to the udp broadcast and can react to changes in any data items as required.
+
+For this example, create a group called Vol-001.
+
+This group is assigned to the LCD controller host and the endpoint.
+Both  the SL-1 and VSL-1 signals are data items within this group.
+Any unit connected to the system can query the values for these data items.
+
+example 
+    get Vol-001
+
+     ->TP1 {"Vol-001":{"SL-1":35,"VSL-1"35}}
+     ->DEC1 {"Vol-001":{"SL-1":35,"VSL-1"35}}
+
+Any unit connected to the system can also set values for data items in the group
+
+example
+   set Vol-001 SL-1 45
+
+A single UDP message is sent to the system that will affect the SL-1 value in the Vol-001 group.
+
+Another example can send a message to an item in a group but only to a single host or device in the system.
+
+   hset TP1 Vol-001 SL-1 46
+
+   hget DEC1 Vol-001 SL-1 
+       ->DEC1 {"Vol-001":{"SL-1":35,"VSL-1"35}}
+
+
+Having defined a data item SL-1 and placed it in one or more groups.
+The overall system will have a need to input and output this data item.
+
+This means that a physical io device either controls or is controlled by this data item.
+These io devices normally exist on a single unit in the system as a whole.
+
+In this example TP1 will have a slider that is intended to control the Volume on DEC1
+
+This is done by linking changes to Slider-1 on TP1 to change the value of Vol-001 SL-1 
+
+Things get more interesting by allowing more than one input device to control the same data value.
+For example by linking changes to Slider-All on TP1 to also change the value of Vol-001 SL-1 
+
+In addition the same input device can be linked to other data items in other groups.
+
+The contention where a data item is controlled by multiple possible input devices is solved on a time priority basis.
+TODO add time in header add time in object
+
+
+Each change is effected at a point in time ( shared by all systems). The last timed value controls the data item.
+
+Due to udp transport delays a older timed change may be delivered after a new timed change from a different unit.
+
+
+Creating an input link
+   hlink input Slider1 Vol-001 SL-1 
+
+
+Creating an output link
+   hlink output AudioOP1  DEC1 Vol-001 SL-1 
+
+When the Vol-001 SL-1  data changes on DEC1 the unit will transfer the data to the actual audio output when an output sync is issued. NOt fully sure how that is to be done yet.
+
+When the Slider1 data changes on TP1 the unit will transfer the data to the global group
+Vol-001 SL_1
+At this time the single global message will update all the systems interested in this control with one multicast broadcast.
+
+
+
+
+Data Items
+
+Direct Data Items
+These are sorted into lists called nodes.
+There are two types of lists : direct and ref.
+A direct list has a value for each item.
+The same list can be  on different hosts
+Items in the same  list on different hosts can have different values
+if an item value is set to just the list/item name it is changed globally on all hosts.
+if an item value is set to host/list/item name it is changed on  the single host.
+
+Ref Data Items
+These are data items that are accessed by a reference name.
+Since they can belong to any or all hosts and can also belong to different different lists
+or groups they are good for referencing the same entity from different perspectives.
+Consider a gpio gpio2.
+This can belong to an output group, and a light switch group.
+
+
+The host/list/item on these lists contain a rerference name rather than a value.
+The same reference value can be on several different lists as different names.
+
+Change a ref value by host/rlist/item then the actual ref value is changed.
+The ref value can be changed directly [host/]rvalue
+
+Changing a rval by any means also changes the value in each of the rlist items that refer to that value.
+
+Here are the proposed commands
+
+[h]set  [host]   node item value
+ sets a value referenced by [host] node item
+ if that node/item is a direct var then set the value
+ if that node/item is a ref var then set the ref value
+
+[h]ref [host] node item refname
+ set up a [host] node item as a ref var, create the refname as needed
+
+[h]rset [host] refname value
+ set a [host] ref value
+
+for the get functions node item is updated from refvar if applicable at the time of the get
+
+[h]get 
+   get all hosts
+
+[h]get [host]
+   get all [host] nodes
+
+[h]get [host] node
+   get all [host] node items
+
+[h]get [host] node item
+   get a single [host] node item
+
+[h]rget [host]
+   get all [host] refnames
+
+
+
+
+
+
+
+
+
+
+

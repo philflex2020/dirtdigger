@@ -1,0 +1,47 @@
+#!/bin/sh
+# start up script
+#/usr/local/bin/run_cpump
+echo " running cpump"
+
+if [ -f /home/pi/work/dirtdigger/basement_pump/mqtt/.newstuff ] ; then
+    echo " copy update"
+    cp /home/pi/work/dirtdigger/basement_pump/mqtt/*.py /usr/local/mqtt
+    rm /home/pi/work/dirtdigger/basement_pump/mqtt/.newstuff
+fi
+
+mkdir -p /tmp/log/mqtt
+
+echo " running mqtt_lcd"
+nohup /usr/bin/python /usr/local/mqtt/mqtt_lcd.py      1>/dev/null 2>/tmp/log/mqtt/mqtt_lcd.out      &
+echo " running mqtt_lcd_send"
+nohup /usr/bin/python /usr/local/mqtt/mqtt_lcd_send.py 1>/dev/null 2>/tmp/log/mqtt/mqtt_lcd_send.out &
+echo " running mqtt_adc"
+nohup python /usr/local/mqtt/mqtt_adc.py               1>/dev/null 2>/tmp/log/mqtt/mqtt_adc.out      &
+echo " running mqtt_gpio"
+nohup python /usr/local/mqtt/mqtt_gpio.py              1>/dev/null 2>/tmp/log/mqtt/mqtt_gpio.out     &
+echo " all done"
+
+
+echo " hostname"                     >/tmp/log/mqtt_email.txt
+hostname                            >>/tmp/log/mqtt_email.txt
+
+echo " mqtt_lcd.out"                >>/tmp/log/mqtt_email.txt
+cat /tmp/log/mqtt/mqtt_lcd.out      >>/tmp/log/mqtt_email.txt
+echo " mqtt_lcd_send.out"           >>/tmp/log/mqtt_email.txt
+cat /tmp/log/mqtt/mqtt_lcd_send.out >>/tmp/log/mqtt_email.txt
+echo " mqtt_adc.out"                >>/tmp/log/mqtt_email.txt
+cat /tmp/log/mqtt/mqtt_adc.out      >>/tmp/log/mqtt_email.txt
+echo " mqtt_gpio.out"               >>/tmp/log/mqtt_email.txt
+cat /tmp/log/mqtt/mqtt_gpio.out     >>/tmp/log/mqtt_email.txt
+
+echo " ifconfig"                    >>/tmp/log/mqtt_email.txt
+ifconfig -a                         >>/tmp/log/mqtt_email.txt
+echo " iwconfig"                    >>/tmp/log/mqtt_email.txt
+iwconfig                            >>/tmp/log/mqtt_email.txt
+echo " jobs"                        >>/tmp/log/mqtt_email.txt
+ps ax                               >>/tmp/log/mqtt_email.txt
+
+python /home/pi/work/dirtdigger/email_test/send_file.py /tmp/log/mqtt_email.txt "crawl pump startup message"
+
+nohup /usr/local/bin/run_cpump_email &
+

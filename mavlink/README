@@ -1,0 +1,12 @@
+mavlink
+https://github.com/mavlink/c_uart_interface_example
+
+
+
+Provides a way to connect via an application to a Ardupilot object.
+
+the c_uart_interface_example is a good start
+We'll need a telnet interface.
+
+We'll also need a simple simulation to test the interface out with.
+

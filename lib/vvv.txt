@@ -1,0 +1,4 @@
+addVar Servo1 Servo pan_servo
+   addVarItem Servo1 pin 3 output_pin
+addVar Servo2 Servo tilt_servo 
+   addVarItem Servo2 pin 4 output_pin

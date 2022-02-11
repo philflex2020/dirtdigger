@@ -1,0 +1,5 @@
+adapter to pins 
+4 (5V), 
+6 (GND) ,
+8 (TX) (Gpio 14),   S1
+10 (RX) of Raspberry S2

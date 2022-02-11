@@ -1,0 +1,113 @@
+JSON = JavaScript Object Notation
+Its OK Javascript != Java
+
+Every object consists of a key - value pair
+The value can be another object
+objects can be 
+   numbers
+   strings
+   lists
+   dicts
+   oter complex objects
+   
+Example:
+  '{"name": "phil, "City": "Apex", "zip":27523}'
+  
+ 
+ Simple testing with jq
+    jq = Command-line JSON processor
+    
+echo '{ "name":"John", "age":30, "city":"New York"}' | jq "."
+{ 
+   "name":"John", 
+   "age":30, 
+   "city":"New York" | jq "."
+}
+
+echo '{"city":{"Apex":[{"Person":"phil", "Zip",27523},{"Person":"john", "Zip",27550}]}}' | jq "."
+{
+  "city":{
+    "Apex": [
+       { "Person":"phil",
+          "Zip":27523
+       },
+       { "Person":"john",
+          "Zip":27550
+       }
+     ]
+   }
+ }
+       
+We can use the strings to send objects from one place to another
+We can use the json in JS or Python code just about directly.
+
+
+Python examples
+
+>>> import json
+>>> x = '{"city":{"Apex":[{"Person":"phil", "Zip",27523},{"Person":"john", "Zip",27550}]}}' 
+>>>#x could be remotely sent to the system
+>>> y = json.loads(x)
+>>> y["city"]["Apex"][0]
+{u'Person':u'phil', u'Zip':27523}
+
+Or one a little closer to the dirtdigger project
+>>>>>> x = '{"sonar":{"-45":27,"-35":200}}' 
+>>>#x could be remotely sent to the system
+>>> y = json.loads(x)
+>>> y["sonar"]["-45"]
+>>> 27
+
+
+basic js example
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Object from JSON String</h2>
+
+<p id="demo"></p>
+
+<script>
+var text = '{"city":{"People":[{"Name":"phil", "Zip":27523},{"Name":"john","Zip":22334}]}}';
+
+obj = JSON.parse(text);
+
+document.getElementById("demo").innerHTML =
+obj.city.People[0].Name + " >>" + obj.city.People[0].Zip;
+</script>
+
+</body>
+</html>
+
+
+Or
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Object from JSON String</h2>
+
+<p id="demo"></p>
+
+<script>
+var text = '{"sonar":[{"Ang":-45, "Range":27},{"Ang":-35, "Range":200}]}'
+
+obj = JSON.parse(text);
+
+document.getElementById("demo").innerHTML ="<table border=1>"+"<tr><td>" +
+"Angle"+"</td><td>" + "Range" +"</td></tr><tr><td>"+obj.sonar[0].Ang + "</td><td>" + obj.sonar[0].Range +"</td></tr> <tr><td>" +
++obj.sonar[1].Ang + "</td><td>" + obj.sonar[1].Range +"</td></tr>" +
+"</table>";
+</script>
+
+</body>
+</html>
+
+Note to run this you will need node.js  More later
+
+
+

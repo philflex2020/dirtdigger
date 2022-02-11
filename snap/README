@@ -1,0 +1,18 @@
+sudo sed -i 's/main/main contrib non-free/' /etc/apt/sources.list.d/raspi.list
+
+# Not required but silences ERROR regarding the memset, memcpy preloaded libs for the Pi
+sudo sed -i 's/\usr/#\/usr/` /etc/ld.so.preload
+
+sudo apt update
+sudo apt install snapd
+sudo reboot
+
+After a reboot typing snap install hello-world should work (or any other snap name, use snap find to see more software)
+
+See also
+https://github.com/MrYsLab/s2aio
+
+
+https://github.com/firmata
+
+https://snap.berkeley.edu/

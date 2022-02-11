@@ -1,0 +1,6 @@
+addVar var1 Thread_Var Thread 
+addVar var2 AnalogInputs Analog 
+addVar var3 Digital_inputs Digital 
+addVar var4 Servo1 Servo 
+addVar var5 Servo2 Servo 
+addVar var6 ServoGroup Group 

@@ -1,0 +1,656 @@
+ =====================
+11 (RFC822 {4708}
+ =====================
+ ********************
+{This is interesting}<div><br>
+ ********************
+ =====================
+7 (RFC822 {5412}
+ =====================
+ ********************
+<span class=3D"gmail-KLw3Rc" style=3D"padding-left:1ex;col=
+or:rgba(0,0,0,0.87);font-family:monospace;font-size:24px">eegv</span><span =
+class=3D"gmail-KLw3Rc" style=3D"padding-left:1ex;color:rgba(0,0,0,0.87);fon=
+t-family:monospace;font-size:24px">bsaz</span><span class=3D"gmail-KLw3Rc" =
+style=3D"padding-left:1ex;color:rgba(0,0,0,0.87);font-family:monospace;font=
+-size:24px">njzh</span>=C2=A0=C2=A0
+
+<span style=3D"color:rgba(0,0,0,0.87);font-family:monospace;font-size:24px"=
+>lo</span><span style=3D"color:rgba(0,0,0,0.87);font-family:monospace;font-=
+size:24px">v</span><span style=3D"color:rgba(0,0,0,0.87);font-family:monosp=
+ace;font-size:24px">t</span>=C2=A0<div>=C2=A0<br>
+ ********************
+ =====================
+3 (RFC822 {52294}
+ =====================
+ ********************
+<span class=3D"gmail-token gmail-keyword" style=3D"box-siz=
+ing:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale =
+Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre=
+;background-color:rgb(253,253,253)"><br class=3D"gmail-Apple-interchange-ne=
+wline">import</span><span style=3D"color:rgb(0,0,0);font-family:Consolas,Mo=
+naco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16=
+px;white-space:pre;background-color:rgb(253,253,253)"> smtplib
+</span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:inheri=
+t;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)">import</span><span style=3D"color:rgb(0,0,0);font=
+-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,mon=
+ospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)"> t=
+ime
+</span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:inheri=
+t;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)">import</span><span style=3D"color:rgb(0,0,0);font=
+-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,mon=
+ospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)"> i=
+maplib
+</span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:inheri=
+t;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)">import</span><span style=3D"color:rgb(0,0,0);font=
+-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,mon=
+ospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)"> e=
+mail
+
+</span><span class=3D"gmail-token gmail-comment" style=3D"box-sizing:inheri=
+t;color:rgb(125,139,153);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)"># ----------------------------------------------=
+---</span><span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot=
+;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-s=
+pace:pre;background-color:rgb(253,253,253)">
+</span><span class=3D"gmail-token gmail-comment" style=3D"box-sizing:inheri=
+t;color:rgb(125,139,153);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)">#</span><span style=3D"color:rgb(0,0,0);font-fam=
+ily:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospa=
+ce;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">
+</span><span class=3D"gmail-token gmail-comment" style=3D"box-sizing:inheri=
+t;color:rgb(125,139,153);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)"># Utility to read email from Gmail Using Python<=
+/span><span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;And=
+ale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space=
+:pre;background-color:rgb(253,253,253)">
+</span><span class=3D"gmail-token gmail-comment" style=3D"box-sizing:inheri=
+t;color:rgb(125,139,153);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)">#</span><span style=3D"color:rgb(0,0,0);font-fam=
+ily:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospa=
+ce;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">
+</span><span class=3D"gmail-token gmail-comment" style=3D"box-sizing:inheri=
+t;color:rgb(125,139,153);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)"># ----------------------------------------------=
+--</span><span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;=
+Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-sp=
+ace:pre;background-color:rgb(253,253,253)">
+
+</span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:inheri=
+t;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)">def</span><span style=3D"color:rgb(0,0,0);font-fa=
+mily:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monosp=
+ace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)"> </sp=
+an><span class=3D"gmail-token gmail-function" style=3D"box-sizing:inherit;c=
+olor:rgb(47,156,10);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&qu=
+ot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-co=
+lor:rgb(253,253,253)">read_email_from_gmail</span><span class=3D"gmail-toke=
+n gmail-punctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-=
+family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,mono=
+space;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">(</=
+span><span class=3D"gmail-token gmail-punctuation" style=3D"box-sizing:inhe=
+rit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)">)</span><span class=3D"gmail-token gmail-punctua=
+tion" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas=
+,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size=
+:16px;white-space:pre;background-color:rgb(253,253,253)">:</span><span styl=
+e=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&=
+quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-=
+color:rgb(253,253,253)">
+    </span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:in=
+herit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono&q=
+uot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backg=
+round-color:rgb(253,253,253)">try</span><span class=3D"gmail-token gmail-pu=
+nctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Con=
+solas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font=
+-size:16px;white-space:pre;background-color:rgb(253,253,253)">:</span><span=
+ style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&qu=
+ot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgr=
+ound-color:rgb(253,253,253)">
+        mail </span><span class=3D"gmail-token gmail-operator" style=3D"box=
+-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,255,0.5);font=
+-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,mon=
+ospace;font-size:16px;white-space:pre">=3D</span><span style=3D"color:rgb(0=
+,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono=
+&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,25=
+3,253)"> imaplib</span><span class=3D"gmail-token gmail-punctuation" style=
+=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&qu=
+ot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white=
+-space:pre;background-color:rgb(253,253,253)">.</span><span style=3D"color:=
+rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu=
+ Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(2=
+53,253,253)">IMAP4_SSL</span><span class=3D"gmail-token gmail-punctuation" =
+style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monac=
+o,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;=
+white-space:pre;background-color:rgb(253,253,253)">(</span><span style=3D"c=
+olor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;U=
+buntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:=
+rgb(253,253,253)">SMTP_SERVER</span><span class=3D"gmail-token gmail-punctu=
+ation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consola=
+s,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-siz=
+e:16px;white-space:pre;background-color:rgb(253,253,253)">)</span><span sty=
+le=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,=
+&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background=
+-color:rgb(253,253,253)">
+        mail</span><span class=3D"gmail-token gmail-punctuation" style=3D"b=
+ox-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;An=
+dale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spac=
+e:pre;background-color:rgb(253,253,253)">.</span><span style=3D"color:rgb(0=
+,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono=
+&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,25=
+3,253)">login</span><span class=3D"gmail-token gmail-punctuation" style=3D"=
+box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;A=
+ndale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spa=
+ce:pre;background-color:rgb(253,253,253)">(</span><span style=3D"color:rgb(=
+0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mon=
+o&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,2=
+53,253)">FROM_EMAIL</span><span class=3D"gmail-token gmail-punctuation" sty=
+le=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&=
+quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whi=
+te-space:pre;background-color:rgb(253,253,253)">,</span><span style=3D"colo=
+r:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubun=
+tu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb=
+(253,253,253)">FROM_PWD</span><span class=3D"gmail-token gmail-punctuation"=
+ style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Mona=
+co,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px=
+;white-space:pre;background-color:rgb(253,253,253)">)</span><span style=3D"=
+color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;=
+Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color=
+:rgb(253,253,253)">
+        mail</span><span class=3D"gmail-token gmail-punctuation" style=3D"b=
+ox-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;An=
+dale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spac=
+e:pre;background-color:rgb(253,253,253)">.</span><span style=3D"color:rgb(0=
+,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono=
+&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,25=
+3,253)">select</span><span class=3D"gmail-token gmail-punctuation" style=3D=
+"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;=
+Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-sp=
+ace:pre;background-color:rgb(253,253,253)">(</span><span class=3D"gmail-tok=
+en gmail-string" style=3D"box-sizing:inherit;color:rgb(47,156,10);font-fami=
+ly:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospac=
+e;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">&#39;in=
+box&#39;</span><span class=3D"gmail-token gmail-punctuation" style=3D"box-s=
+izing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale=
+ Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pr=
+e;background-color:rgb(253,253,253)">)</span><span style=3D"color:rgb(0,0,0=
+);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quo=
+t;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,25=
+3)">
+
+        type</span><span class=3D"gmail-token gmail-punctuation" style=3D"b=
+ox-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;An=
+dale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spac=
+e:pre;background-color:rgb(253,253,253)">,</span><span style=3D"color:rgb(0=
+,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono=
+&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,25=
+3,253)"> data </span><span class=3D"gmail-token gmail-operator" style=3D"bo=
+x-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,255,0.5);fon=
+t-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,mo=
+nospace;font-size:16px;white-space:pre">=3D</span><span style=3D"color:rgb(=
+0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mon=
+o&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,2=
+53,253)"> mail</span><span class=3D"gmail-token gmail-punctuation" style=3D=
+"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;=
+Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-sp=
+ace:pre;background-color:rgb(253,253,253)">.</span><span style=3D"color:rgb=
+(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mo=
+no&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,=
+253,253)">search</span><span class=3D"gmail-token gmail-punctuation" style=
+=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&qu=
+ot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white=
+-space:pre;background-color:rgb(253,253,253)">(</span><span style=3D"color:=
+rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu=
+ Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(2=
+53,253,253)">None</span><span class=3D"gmail-token gmail-punctuation" style=
+=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&qu=
+ot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white=
+-space:pre;background-color:rgb(253,253,253)">,</span><span style=3D"color:=
+rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu=
+ Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(2=
+53,253,253)"> </span><span class=3D"gmail-token gmail-string" style=3D"box-=
+sizing:inherit;color:rgb(47,156,10);font-family:Consolas,Monaco,&quot;Andal=
+e Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:p=
+re;background-color:rgb(253,253,253)">&#39;ALL&#39;</span><span class=3D"gm=
+ail-token gmail-punctuation" style=3D"box-sizing:inherit;color:rgb(95,99,10=
+0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&qu=
+ot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,2=
+53)">)</span><span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&q=
+uot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whit=
+e-space:pre;background-color:rgb(253,253,253)">
+        mail_ids </span><span class=3D"gmail-token gmail-operator" style=3D=
+"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,255,0.5);=
+font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;=
+,monospace;font-size:16px;white-space:pre">=3D</span><span style=3D"color:r=
+gb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu =
+Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(25=
+3,253,253)"> data</span><span class=3D"gmail-token gmail-punctuation" style=
+=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&qu=
+ot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white=
+-space:pre;background-color:rgb(253,253,253)">[</span><span class=3D"gmail-=
+token gmail-number" style=3D"box-sizing:inherit;color:rgb(201,44,44);font-f=
+amily:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monos=
+pace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">0</s=
+pan><span class=3D"gmail-token gmail-punctuation" style=3D"box-sizing:inher=
+it;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)">]</span><span style=3D"color:rgb(0,0,0);font-fami=
+ly:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospac=
+e;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">
+
+        id_list </span><span class=3D"gmail-token gmail-operator" style=3D"=
+box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,255,0.5);f=
+ont-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,=
+monospace;font-size:16px;white-space:pre">=3D</span><span style=3D"color:rg=
+b(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu M=
+ono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253=
+,253,253)"> mail_ids</span><span class=3D"gmail-token gmail-punctuation" st=
+yle=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,=
+&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;wh=
+ite-space:pre;background-color:rgb(253,253,253)">.</span><span style=3D"col=
+or:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubu=
+ntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rg=
+b(253,253,253)">split</span><span class=3D"gmail-token gmail-punctuation" s=
+tyle=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco=
+,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;w=
+hite-space:pre;background-color:rgb(253,253,253)">(</span><span class=3D"gm=
+ail-token gmail-punctuation" style=3D"box-sizing:inherit;color:rgb(95,99,10=
+0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&qu=
+ot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,2=
+53)">)</span><span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&q=
+uot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whit=
+e-space:pre;background-color:rgb(253,253,253)">  =20
+        first_email_id </span><span class=3D"gmail-token gmail-operator" st=
+yle=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,255=
+,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono=
+&quot;,monospace;font-size:16px;white-space:pre">=3D</span><span style=3D"c=
+olor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;U=
+buntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:=
+rgb(253,253,253)"> int</span><span class=3D"gmail-token gmail-punctuation" =
+style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monac=
+o,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;=
+white-space:pre;background-color:rgb(253,253,253)">(</span><span style=3D"c=
+olor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;U=
+buntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:=
+rgb(253,253,253)">id_list</span><span class=3D"gmail-token gmail-punctuatio=
+n" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Mo=
+naco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16=
+px;white-space:pre;background-color:rgb(253,253,253)">[</span><span class=
+=3D"gmail-token gmail-number" style=3D"box-sizing:inherit;color:rgb(201,44,=
+44);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&q=
+uot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,=
+253)">0</span><span class=3D"gmail-token gmail-punctuation" style=3D"box-si=
+zing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale =
+Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre=
+;background-color:rgb(253,253,253)">]</span><span class=3D"gmail-token gmai=
+l-punctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family=
+:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;=
+font-size:16px;white-space:pre;background-color:rgb(253,253,253)">)</span><=
+span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mon=
+o&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;ba=
+ckground-color:rgb(253,253,253)">
+        latest_email_id </span><span class=3D"gmail-token gmail-operator" s=
+tyle=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,25=
+5,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mon=
+o&quot;,monospace;font-size:16px;white-space:pre">=3D</span><span style=3D"=
+color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;=
+Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color=
+:rgb(253,253,253)"> int</span><span class=3D"gmail-token gmail-punctuation"=
+ style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Mona=
+co,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px=
+;white-space:pre;background-color:rgb(253,253,253)">(</span><span style=3D"=
+color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;=
+Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color=
+:rgb(253,253,253)">id_list</span><span class=3D"gmail-token gmail-punctuati=
+on" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,M=
+onaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:1=
+6px;white-space:pre;background-color:rgb(253,253,253)">[</span><span class=
+=3D"gmail-token gmail-operator" style=3D"box-sizing:inherit;color:rgb(166,1=
+27,89);background:rgba(255,255,255,0.5);font-family:Consolas,Monaco,&quot;A=
+ndale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spa=
+ce:pre">-</span><span class=3D"gmail-token gmail-number" style=3D"box-sizin=
+g:inherit;color:rgb(201,44,44);font-family:Consolas,Monaco,&quot;Andale Mon=
+o&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;ba=
+ckground-color:rgb(253,253,253)">1</span><span class=3D"gmail-token gmail-p=
+unctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Co=
+nsolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;fon=
+t-size:16px;white-space:pre;background-color:rgb(253,253,253)">]</span><spa=
+n class=3D"gmail-token gmail-punctuation" style=3D"box-sizing:inherit;color=
+:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;U=
+buntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:=
+rgb(253,253,253)">)</span><span style=3D"color:rgb(0,0,0);font-family:Conso=
+las,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-s=
+ize:16px;white-space:pre;background-color:rgb(253,253,253)">
+
+
+        </span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizin=
+g:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mo=
+no&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;b=
+ackground-color:rgb(253,253,253)">for</span><span style=3D"color:rgb(0,0,0)=
+;font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot=
+;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253=
+)"> i </span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:=
+inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono=
+&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;bac=
+kground-color:rgb(253,253,253)">in</span><span style=3D"color:rgb(0,0,0);fo=
+nt-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,m=
+onospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">=
+ range</span><span class=3D"gmail-token gmail-punctuation" style=3D"box-siz=
+ing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale M=
+ono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;=
+background-color:rgb(253,253,253)">(</span><span style=3D"color:rgb(0,0,0);=
+font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;=
+,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)=
+">latest_email_id</span><span class=3D"gmail-token gmail-punctuation" style=
+=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&qu=
+ot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white=
+-space:pre;background-color:rgb(253,253,253)">,</span><span style=3D"color:=
+rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu=
+ Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(2=
+53,253,253)">first_email_id</span><span class=3D"gmail-token gmail-punctuat=
+ion" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,=
+Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:=
+16px;white-space:pre;background-color:rgb(253,253,253)">,</span><span style=
+=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&q=
+uot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-c=
+olor:rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-operator" s=
+tyle=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,25=
+5,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mon=
+o&quot;,monospace;font-size:16px;white-space:pre">-</span><span class=3D"gm=
+ail-token gmail-number" style=3D"box-sizing:inherit;color:rgb(201,44,44);fo=
+nt-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,m=
+onospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">=
+1</span><span class=3D"gmail-token gmail-punctuation" style=3D"box-sizing:i=
+nherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale Mono&q=
+uot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backg=
+round-color:rgb(253,253,253)">)</span><span class=3D"gmail-token gmail-punc=
+tuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Conso=
+las,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-s=
+ize:16px;white-space:pre;background-color:rgb(253,253,253)">:</span><span s=
+tyle=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot=
+;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgrou=
+nd-color:rgb(253,253,253)">
+            typ</span><span class=3D"gmail-token gmail-punctuation" style=
+=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&qu=
+ot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white=
+-space:pre;background-color:rgb(253,253,253)">,</span><span style=3D"color:=
+rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu=
+ Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(2=
+53,253,253)"> data </span><span class=3D"gmail-token gmail-operator" style=
+=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,255,0.=
+5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&qu=
+ot;,monospace;font-size:16px;white-space:pre">=3D</span><span style=3D"colo=
+r:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubun=
+tu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb=
+(253,253,253)"> mail</span><span class=3D"gmail-token gmail-punctuation" st=
+yle=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,=
+&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;wh=
+ite-space:pre;background-color:rgb(253,253,253)">.</span><span style=3D"col=
+or:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubu=
+ntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rg=
+b(253,253,253)">fetch</span><span class=3D"gmail-token gmail-punctuation" s=
+tyle=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco=
+,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;w=
+hite-space:pre;background-color:rgb(253,253,253)">(</span><span style=3D"co=
+lor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ub=
+untu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:r=
+gb(253,253,253)">i</span><span class=3D"gmail-token gmail-punctuation" styl=
+e=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&q=
+uot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whit=
+e-space:pre;background-color:rgb(253,253,253)">,</span><span style=3D"color=
+:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubunt=
+u Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(=
+253,253,253)"> </span><span class=3D"gmail-token gmail-string" style=3D"box=
+-sizing:inherit;color:rgb(47,156,10);font-family:Consolas,Monaco,&quot;Anda=
+le Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:=
+pre;background-color:rgb(253,253,253)">&#39;(RFC822)&#39;</span><span style=
+=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&q=
+uot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-c=
+olor:rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-punctuation=
+" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Mon=
+aco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16p=
+x;white-space:pre;background-color:rgb(253,253,253)">)</span><span style=3D=
+"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot=
+;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-colo=
+r:rgb(253,253,253)">
+
+            </span><span class=3D"gmail-token gmail-keyword" style=3D"box-s=
+izing:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andal=
+e Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:p=
+re;background-color:rgb(253,253,253)">for</span><span style=3D"color:rgb(0,=
+0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&=
+quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253=
+,253)"> response_part </span><span class=3D"gmail-token gmail-keyword" styl=
+e=3D"box-sizing:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&=
+quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whi=
+te-space:pre;background-color:rgb(253,253,253)">in</span><span style=3D"col=
+or:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubu=
+ntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rg=
+b(253,253,253)"> data</span><span class=3D"gmail-token gmail-punctuation" s=
+tyle=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco=
+,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;w=
+hite-space:pre;background-color:rgb(253,253,253)">:</span><span style=3D"co=
+lor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ub=
+untu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:r=
+gb(253,253,253)">
+                </span><span class=3D"gmail-token gmail-keyword" style=3D"b=
+ox-sizing:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;A=
+ndale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spa=
+ce:pre;background-color:rgb(253,253,253)">if</span><span style=3D"color:rgb=
+(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mo=
+no&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,=
+253,253)"> isinstance</span><span class=3D"gmail-token gmail-punctuation" s=
+tyle=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco=
+,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;w=
+hite-space:pre;background-color:rgb(253,253,253)">(</span><span style=3D"co=
+lor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ub=
+untu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:r=
+gb(253,253,253)">response_part</span><span class=3D"gmail-token gmail-punct=
+uation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consol=
+as,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-si=
+ze:16px;white-space:pre;background-color:rgb(253,253,253)">,</span><span st=
+yle=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)"> tuple</span><span class=3D"gmail-token gmail-pun=
+ctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Cons=
+olas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-=
+size:16px;white-space:pre;background-color:rgb(253,253,253)">)</span><span =
+class=3D"gmail-token gmail-punctuation" style=3D"box-sizing:inherit;color:r=
+gb(95,99,100);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubu=
+ntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rg=
+b(253,253,253)">:</span><span style=3D"color:rgb(0,0,0);font-family:Consola=
+s,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-siz=
+e:16px;white-space:pre;background-color:rgb(253,253,253)">
+                    msg </span><span class=3D"gmail-token gmail-operator" s=
+tyle=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255,25=
+5,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mon=
+o&quot;,monospace;font-size:16px;white-space:pre">=3D</span><span style=3D"=
+color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;=
+Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color=
+:rgb(253,253,253)"> email</span><span class=3D"gmail-token gmail-punctuatio=
+n" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Mo=
+naco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16=
+px;white-space:pre;background-color:rgb(253,253,253)">.</span><span style=
+=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&q=
+uot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-c=
+olor:rgb(253,253,253)">message_from_string</span><span class=3D"gmail-token=
+ gmail-punctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-f=
+amily:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monos=
+pace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)">(</s=
+pan><span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andal=
+e Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:p=
+re;background-color:rgb(253,253,253)">response_part</span><span class=3D"gm=
+ail-token gmail-punctuation" style=3D"box-sizing:inherit;color:rgb(95,99,10=
+0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&qu=
+ot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,2=
+53)">[</span><span class=3D"gmail-token gmail-number" style=3D"box-sizing:i=
+nherit;color:rgb(201,44,44);font-family:Consolas,Monaco,&quot;Andale Mono&q=
+uot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backg=
+round-color:rgb(253,253,253)">1</span><span class=3D"gmail-token gmail-punc=
+tuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Conso=
+las,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-s=
+ize:16px;white-space:pre;background-color:rgb(253,253,253)">]</span><span c=
+lass=3D"gmail-token gmail-punctuation" style=3D"box-sizing:inherit;color:rg=
+b(95,99,100);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubun=
+tu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb=
+(253,253,253)">)</span><span style=3D"color:rgb(0,0,0);font-family:Consolas=
+,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size=
+:16px;white-space:pre;background-color:rgb(253,253,253)">
+                    email_subject </span><span class=3D"gmail-token gmail-o=
+perator" style=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(=
+255,255,255,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;=
+Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre">=3D</span><span=
+ style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&qu=
+ot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgr=
+ound-color:rgb(253,253,253)"> msg</span><span class=3D"gmail-token gmail-pu=
+nctuation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Con=
+solas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font=
+-size:16px;white-space:pre;background-color:rgb(253,253,253)">[</span><span=
+ class=3D"gmail-token gmail-string" style=3D"box-sizing:inherit;color:rgb(4=
+7,156,10);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu =
+Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(25=
+3,253,253)">&#39;subject&#39;</span><span class=3D"gmail-token gmail-punctu=
+ation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consola=
+s,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-siz=
+e:16px;white-space:pre;background-color:rgb(253,253,253)">]</span><span sty=
+le=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,=
+&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background=
+-color:rgb(253,253,253)">
+                    email_from </span><span class=3D"gmail-token gmail-oper=
+ator" style=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255=
+,255,255,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubu=
+ntu Mono&quot;,monospace;font-size:16px;white-space:pre">=3D</span><span st=
+yle=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)"> msg</span><span class=3D"gmail-token gmail-punct=
+uation" style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consol=
+as,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-si=
+ze:16px;white-space:pre;background-color:rgb(253,253,253)">[</span><span cl=
+ass=3D"gmail-token gmail-string" style=3D"box-sizing:inherit;color:rgb(47,1=
+56,10);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mon=
+o&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,2=
+53,253)">&#39;from&#39;</span><span class=3D"gmail-token gmail-punctuation"=
+ style=3D"box-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Mona=
+co,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px=
+;white-space:pre;background-color:rgb(253,253,253)">]</span><span style=3D"=
+color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;=
+Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color=
+:rgb(253,253,253)">
+                    </span><span class=3D"gmail-token gmail-keyword" style=
+=3D"box-sizing:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&q=
+uot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whit=
+e-space:pre;background-color:rgb(253,253,253)">print</span><span style=3D"c=
+olor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;U=
+buntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:=
+rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-string" style=3D=
+"box-sizing:inherit;color:rgb(47,156,10);font-family:Consolas,Monaco,&quot;=
+Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-sp=
+ace:pre;background-color:rgb(253,253,253)">&#39;From : &#39;</span><span st=
+yle=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;=
+,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgroun=
+d-color:rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-operator=
+" style=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,255=
+,255,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu =
+Mono&quot;,monospace;font-size:16px;white-space:pre">+</span><span style=3D=
+"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot=
+;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-colo=
+r:rgb(253,253,253)"> email_from </span><span class=3D"gmail-token gmail-ope=
+rator" style=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(25=
+5,255,255,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ub=
+untu Mono&quot;,monospace;font-size:16px;white-space:pre">+</span><span sty=
+le=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,=
+&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background=
+-color:rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-string" s=
+tyle=3D"box-sizing:inherit;color:rgb(47,156,10);font-family:Consolas,Monaco=
+,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;w=
+hite-space:pre;background-color:rgb(253,253,253)">&#39;\n&#39;</span><span =
+style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quo=
+t;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgro=
+und-color:rgb(253,253,253)">
+                    </span><span class=3D"gmail-token gmail-keyword" style=
+=3D"box-sizing:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&q=
+uot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;whit=
+e-space:pre;background-color:rgb(253,253,253)">print</span><span style=3D"c=
+olor:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;U=
+buntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-color:=
+rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-string" style=3D=
+"box-sizing:inherit;color:rgb(47,156,10);font-family:Consolas,Monaco,&quot;=
+Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-sp=
+ace:pre;background-color:rgb(253,253,253)">&#39;Subject : &#39;</span><span=
+ style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&qu=
+ot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backgr=
+ound-color:rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-opera=
+tor" style=3D"box-sizing:inherit;color:rgb(166,127,89);background:rgba(255,=
+255,255,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubun=
+tu Mono&quot;,monospace;font-size:16px;white-space:pre">+</span><span style=
+=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&q=
+uot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;background-c=
+olor:rgb(253,253,253)"> email_subject </span><span class=3D"gmail-token gma=
+il-operator" style=3D"box-sizing:inherit;color:rgb(166,127,89);background:r=
+gba(255,255,255,0.5);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&q=
+uot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre">+</span><sp=
+an style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&=
+quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;back=
+ground-color:rgb(253,253,253)"> </span><span class=3D"gmail-token gmail-str=
+ing" style=3D"box-sizing:inherit;color:rgb(47,156,10);font-family:Consolas,=
+Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:=
+16px;white-space:pre;background-color:rgb(253,253,253)">&#39;\n&#39;</span>=
+<span style=3D"color:rgb(0,0,0);font-family:Consolas,Monaco,&quot;Andale Mo=
+no&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;b=
+ackground-color:rgb(253,253,253)">
+
+    </span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizing:in=
+herit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mono&q=
+uot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;backg=
+round-color:rgb(253,253,253)">except</span><span style=3D"color:rgb(0,0,0);=
+font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&quot;=
+,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,253)=
+"> Exception</span><span class=3D"gmail-token gmail-punctuation" style=3D"b=
+ox-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;An=
+dale Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-spac=
+e:pre;background-color:rgb(253,253,253)">,</span><span style=3D"color:rgb(0=
+,0,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono=
+&quot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,25=
+3,253)"> e</span><span class=3D"gmail-token gmail-punctuation" style=3D"box=
+-sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Anda=
+le Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:=
+pre;background-color:rgb(253,253,253)">:</span><span style=3D"color:rgb(0,0=
+,0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&q=
+uot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,=
+253)">
+        </span><span class=3D"gmail-token gmail-keyword" style=3D"box-sizin=
+g:inherit;color:rgb(25,144,184);font-family:Consolas,Monaco,&quot;Andale Mo=
+no&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;b=
+ackground-color:rgb(253,253,253)">print</span><span style=3D"color:rgb(0,0,=
+0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&qu=
+ot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,2=
+53)"> str</span><span class=3D"gmail-token gmail-punctuation" style=3D"box-=
+sizing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andal=
+e Mono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:p=
+re;background-color:rgb(253,253,253)">(</span><span style=3D"color:rgb(0,0,=
+0);font-family:Consolas,Monaco,&quot;Andale Mono&quot;,&quot;Ubuntu Mono&qu=
+ot;,monospace;font-size:16px;white-space:pre;background-color:rgb(253,253,2=
+53)">e</span><span class=3D"gmail-token gmail-punctuation" style=3D"box-siz=
+ing:inherit;color:rgb(95,99,100);font-family:Consolas,Monaco,&quot;Andale M=
+ono&quot;,&quot;Ubuntu Mono&quot;,monospace;font-size:16px;white-space:pre;=
+background-color:rgb(253,253,253)">)</span>=C2=A0=C2=A0<br>
+ ********************
+ =====================
+2 (RFC822 {4675}
+ =====================
+ ********************
+Hello from sdcs
+ ********************

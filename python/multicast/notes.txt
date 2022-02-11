@@ -1,0 +1,56 @@
+Notes on the multicast data distribution system.
+
+The system is designed to retrieve data from a node which is part of a large complex system.
+
+Each data containing node will broadcast a UDP multicast message containing one or more data items.
+
+Each data requestor will subscribe to that multicast message and retrieve the data item.
+
+If the data item is not in the current message the requestor will send a message ( another multicast message) requesting that the particular data item is added to the message as a whole.
+
+The next time the incoming message is received the new data item will be added.
+
+A data item is defined as <node> <data_item>, <node> can be <*> indicating all nodes.
+
+If the incoming message does not contain the requested data item a message
+"ADD <node> <data_item>" will be broadcast to the system.
+
+The boadcast message will be in json format.
+
+{
+   "1234",:[
+	      {"item1":"value1"},
+              {"item2":"value2"},
+              {"item3":"value3"},
+              {"item4":"value4"}
+           ]
+}
+
+The config message will be like this
+Note that the val can be blank or null a value will cause the value to be set.
+[
+  {
+   "1234" :[
+	      {"item1":"val1"},
+              {"item2":"val2"},
+              {"item3":"val3"},
+              {"item4":"val4"}
+           ]
+  },
+  {
+   "1235":[
+	       {"item1":"val1"},
+               {"item2":"val2"},
+               {"item3":"val3"},
+               {"item4":"val4"}
+          ]
+  }
+]
+
+
+The user API will be:
+
+int udpDataConfig(<node>, <addr>, <cmd>, <data> );
+int udpDataGet(<node>, <item>, <&value>);
+int udpDataSet(<node>, <item>, <&value>);
+int udpDataClose(<node>);

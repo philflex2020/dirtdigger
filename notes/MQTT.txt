@@ -1,0 +1,27 @@
+MQTT a free fast message broker
+
+https://tutorials-raspberrypi.com/raspberry-pi-mqtt-broker-client-wireless-communication/
+
+There are several applications that can be used to send and receive through MQTT, but the simplest on the Raspberry Pi is probably Mosquitto. 
+
+We will install this on the Raspberry Pi first:
+
+sudo apt-get install -y mosquitto mosquitto-clients
+
+mosquitto_sub -h localhost -v -t test/motor
+mosquitto_pub -h localhost -t test/motor -m "Hello Raspberry Pi Motor"
+
+(mosquitto_sub -h localhost -v -t "\$SYS/#")
+
+For python
+
+sudo pip install paho-mqtt
+or
+git clone https://github.com/eclipse/paho.mqtt.python.git
+cd paho.mqtt.python
+python setup.py install
+
+Test this with 
+mosquitto_pub -h localhost -t MOTOR_chan -m '{"cmd":"run","speed":0.5,"heading":370, "steer":-0.3}'
+get status with mosquitto_pub -h localhost -t MOTOR_stat -m 
+mosquitto_sub -h localhost -v -t "MOTOR_data"

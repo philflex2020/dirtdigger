@@ -1,0 +1,111 @@
+Running an Email Notification Script (Optional)
+A problematic aspect of running a headless Raspberry Pi setup is the lack of information regarding its current IP address, which may change if an Internet or power outages occurs. 
+A helpful solution is to have the Raspberry Pi send out a notification email each time it reboots, 
+or when the wireless adapter is assigned a new IP address.
+
+To add this functionality to your RPi, we will utilize a mail utility program and a Gmail email address 
+to notify the user of any changes to the IP address.
+
+Step 1: Required Packages Installation
+
+The first step is to update your package list and install the mailutils and ssmtp packages:
+
+sudo apt-get update 
+sudo apt-get install mailutils ssmtp
+Step 2: Edit Configuration Files
+
+Next, to add the information specific to the Gmail account in the sstmp.conf file, run:
+
+sudo nano /etc/ssmtp/ssmtp.conf  
+We are interested in changing/adding the information for the following four lines of code:
+
+mailhub=smtp.gmail.com:587 
+AuthUser=<emailaddress>@gmail.com 
+AuthPass=<password> 
+UseSTARTTLS=YES 
+Warning: Your password is not protected when entered into the ssmtp.conf file.
+
+It is highly suggested to create an email address specifically for this purpose, where security vulnerability is not a concern.
+
+Note: It is also necessary to allow less secure apps to access your Gmail account. 
+This can be accomplished using the following guide:
+
+https://support.google.com/accounts/answer/6010255?hl=en
+
+Save your changes when exiting, then open the revaliases file by running:
+
+sudo nano /etc/ssmtp/revaliases 
+Add the last line of code shown below with your email address.
+
+# sSMTP aliases 
+# 
+# Format:       local_account:outgoing_address:mailhub 
+# 
+# Example: root:your_login@your.domain:mailhub.your.domain[:port] 
+# where [:port] is an optional port number that defaults to 25. 
+root:<email address>@gmail.com:smtp.gmail.com:587 
+Step 3: IP Address Checking Scripts
+
+We will create two different IP checking scripts. One will be intended to run every 15 minutes to verify the IP address of the RPi hasn't changes, and one will be run only when the RPi reboots. Please note: Scripts are currently only meant to monitor changes to wlan0.
+
+First, create a folder in the /home/pi directory to house your scripts:
+
+mkdir ipcheck
+Enter the folder, create the two script files and make them both executable:
+
+sudo nano ipcheck.sh
+sudo nano ipcheck2.sh
+sudo chmod +x ipcheck.sh
+sudo chmod +x ipcheck2.sh
+Finally, copy the code to each script from the section below (or the scripts attached to this tutorial), while remembering to specify the email address you would like the notifications sent to.
+
+Code for: ipcheck.sh
+
+       
+#! /bin/sh
+sleep 20
+SUBJ="Warning: Raspberry Pi - new IP Address"
+SUBJ2="Warning: Raspberry Pi was restarted"
+EMAIL="<email>@gmail.com"
+ip1=""
+ip2=""
+read ip1 < /home/pi/ipcheck/ip.txt
+ip2=$(/sbin/ip -o -4 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
+if [ "$ip1" = "$ip2" ]
+    then
+    echo "Your Raspberry was restarted, the IP Address is the same as before: $ip2"| mail -s "$SUBJ2" $EMAIL;
+else
+    echo "$ip2" > /home/pi/ipcheck/ip.txt;
+    echo "New IP Address was assigned to your Raspberry Pi: $ip2" | mail -s "$SUBJ" $EMAIL;
+    exit;
+fi 
+Code for ipcheck2.sh
+
+       
+#! /bin/sh
+SUBJ="Warning: Raspberry Pi - new IP Address"
+EMAIL="<email>@gmail.com"
+ip1=""
+ip2=""
+read ip1 < /home/pi/ipcheck/ip.txt
+ip2=$(/sbin/ip -o -4 addr list wlan0 | awk '{print $4}' | cut -d/ -f1)
+if [ "$ip1" = "$ip2" ]
+    then
+    exit
+else
+    echo "$ip2" > /home/pi/ipcheck/ip.txt;
+    echo "New IP Address was assigned to your Raspberry Pi: $ip2" | mail -s "$SUBJ" $EMAIL;
+    exit
+fi
+Step 4: Add Scripts to Cronjob
+
+The following cronjob entries will ensure the script will email a change in IP address upon reboot, and at 15 minute intervals
+
+Run:
+
+crontab -e 
+Add:
+
+@reboot /home/pi/ipcheck.sh 
+0,15,30,45 * * * * sh /home/pi/ipcheck2.sh &>/dev/null 
+Conclusion

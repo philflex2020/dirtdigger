@@ -1,0 +1,52 @@
+
+The robot arm , or at least , a segment of it consists of a possible wrist and a joint followed by a length.
+
+
+Any point x,y,z can also be represented by a vector
+
+e,a d
+
+where
+   d = sqrt(x*x + y*y + z*z)
+   e = asin(d/y)
+   a = atan(x/z)
+
+
+the wrist has an additional aspect, rotation.
+consider a rotation angle r
+
+If we normalize the vector created by the joint coords e and d  
+
+we get a y coord of
+
+   y1 = d * sin(e);
+   x1 = d * cos(e)
+
+Effecively this y coord is now rotated by r
+y2 = y1 * cos(r)
+x2 = y1 * sin(r)
+z2 = d * cos(a) and does not change as we rotate
+
+reducing this we get
+
+y2 = d * sin(e) * cos(r)
+x2 = d * sin(e) * sin(r)
+z2 = d * cos(a)
+
+
+Now this was normalized so we have to restore the original base vector Eb and Ab
+
+Dxy =   d * cos(-Eb)
+Dz  = Dxy * cos(-Ab)
+Dx  = Dxy * sin(-Ab)
+Dy  = d * sin(-Eb);
+
+
+so the final result is
+
+Yr = d * (sin(e) * cos(r) + sin(Eb)) 
+Xr = d * (sin(e) * sin(r)) + d * cos(Eb) *sin(Ab) 
+Zr = d * (cos(a)) + d * cos(Eb) *cos(Ab)
+
+Looks a little cooky but there it is.
+

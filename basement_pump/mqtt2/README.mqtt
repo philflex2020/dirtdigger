@@ -1,0 +1,18 @@
+https://tutorials-raspberrypi.com/raspberry-pi-mqtt-broker-client-wireless-communication/
+There are several applications that can be used to send and receive through MQTT, but the simplest on the Raspberry Pi is probably Mosquitto. 
+We will install this on the Raspberry Pi first:
+
+sudo apt-get install -y mosquitto mosquitto-clients
+
+mosquitto_sub -h localhost -v -t test_channel
+
+mosquitto_pub -h localhost -t test_channel -m "Hello Raspberry Pi"
+mosquitto_sub -h localhost -v -t "\$SYS/#"
+
+sudo pip install paho-mqtt
+or
+git clone https://github.com/eclipse/paho.mqtt.python.git
+
+cd paho.mqtt.python
+
+python setup.py install

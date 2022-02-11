@@ -1,0 +1,3 @@
+wget http://ftp.be.debian.org/pub/linux/kernel/projects/rt/4.4/patch-4.4.9-rt17.patch.gz
+wget http://ftp.be.debian.org/pub/linux/kernel/projects/rt/4.14/patch-4.14.40-rt31.patch.gz
+wget http://ftp.be.debian.org/pub/linux/kernel/projects/rt/4.14/patch-4.14.52-rt34.patch.gz

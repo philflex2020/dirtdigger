@@ -1,0 +1,29 @@
+
+wget http://mosquitto.org/files/source/mosquitto-1.4.8.tar.gz
+tar xvzf mosquitto-1.4.8.tar.gz
+
+sudo apt-get install uuid-dev
+sudo apt-get install libssl-dev
+
+cd mosquitto-1.4.8
+
+ emacs config.mk
+
+--- config.mk~	2016-02-14 09:36:55.000000000 -0500
++++ config.mk	2019-07-02 09:12:11.054124409 -0400
+@@ -58,7 +58,7 @@
+ WITH_SYS_TREE:=yes
+ 
+ # Build with SRV lookup support.
+-WITH_SRV:=yes
++#WITH_SRV:=yes
+ 
+ # Build using libuuid for clientid generation (Linux only - please report if
+ # supported on your platform).
+
+
+make
+
+
+The lib is in 
+/usr/lib/aarch64-linux-gnu/libmosquitto.so.1

@@ -1,0 +1,14 @@
+addVar Servo1 Servo pan_servo
+send Servo1 set pin 3
+send Servo1 set pos 20 
+send Servo1 set base 0 
+
+addVar Servo2 Servo tilt_servo
+send Servo2 set pin 4
+send Servo2 set pos 20 
+send Servo2 set base 0
+
+send Servo1 show config
+send Servo2 show config
+
+   

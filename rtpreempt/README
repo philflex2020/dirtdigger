@@ -1,0 +1,103 @@
+We'll have to ge the real time rpi patch running
+here are some notes
+
+http://www.frank-durr.de/?p=203
+
+git clone https://github.com/raspberrypi/linux.git
+cd linux
+git checkout rpi-4.14.50
+
+But see note we are on  4.14.50-v7+ 
+wget https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/patch-4.4.9-rt17.patch.gz
+
+we got the patches from 
+ 4.14.50-v7+ 
+wget http://ftp.be.debian.org/pub/linux/kernel/projects/rt/4.14/patch-4.14.40-rt31.patch.gz
+wget http://ftp.be.debian.org/pub/linux/kernel/projects/rt/4.14/patch-4.14.52-rt34.patch.gz
+
+zcat patch-4.4.9-rt17.patch.gz | patch -p1
+
+Then build kernel
+cd /home/pi/work/
+git clone https://github.com/raspberrypi/tools.git
+export ARCH=arm
+export CROSS_COMPILE=/home/pi/work/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-
+export INSTALL_MOD_PATH=/home/pi/work/rtkernel
+
+pi a b zero
+export KERNEL=kernel
+make bcmrpi_defconfig
+
+pi 2/3 b
+export KERNEL=kernel7
+make bcm2709_defconfig
+
+An alternative way is to export the configuration from a running Raspberry Pi:
+sudo modprobe configs
+
+scp pi@raspberry:/proc/config.gz ./
+zcat config.gz > .config
+make menuconfig
+
+CONFIG_PREEMPT_RT_FULL
+Enable HIGH_RES_TIMERS: General setup timers high res
+
+make zIMage
+make modules
+make dtbs
+make modules_install
+
+
+mkdir $INSTALL_MOD_PATH/boot
+./scripts/mkknlimg ./arch/arm/boot/zImage $INSTALL_MOD_PATH/boot/$KERNEL.img
+cp ./arch/arm/boot/dts/*.dtb $INSTALL_MOD_PATH/boot/
+cp -r ./arch/arm/boot/dts/overlays $INSTALL_MOD_PATH/boot
+cd $INSTALL_MOD_PATH
+tar czf /tmp/kernel.tgz *
+scp /tmp/kernel.tgz pi@raspberry:/tmp
+
+
+And on the target pi
+cd /tmp
+tar xzf kernel.tgz
+sudo rm -r /lib/firmware
+sudo rm -r /boot/overlays
+cd boot
+sudo cp -rd * /boot/
+cd ../lib
+sudo cp -dr * /lib/
+
+sudo nano /boot/cmdline.txt
+add the following option
+sdhci_bcm2708.enable_llm=0
+
+reboot pi
+
+
+Latency eval
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
+cd rt-tests/
+make all
+sudo ./cyclictest -m -t1 -p 80 -n -i 500 -l 100000
+
+without 
+idle
+# /dev/cpu_dma_latency set to 0us
+policy: fifo: loadavg: 0.13 0.10 0.03 1/172 1477          
+
+T: 0 ( 1477) P:80 I:500 C: 100000 Min:     10 Act:   14 Avg:   13 Max:      25
+
+ping load 
+sudo ping -i 0.01 raspberrypi
+
+pi@psw-controller:~/work/rtpreempt/rt-tests $ sudo ./cyclictest -m -t1 -p 80 -n -i 500 -l 100000
+# /dev/cpu_dma_latency set to 0us
+policy: fifo: loadavg: 0.22 0.13 0.04 1/172 1486          
+
+T: 0 ( 1486) P:80 I:500 C: 100000 Min:      9 Act:   14 Avg:   13 Max:      54
+
+
+With the latency patch
+(from web 700 Mhz pi)
+
+T: 0 ( 976) P:80 I:500 C: 100000 Min: 23 Act: 40 Avg: 37 Max: 95

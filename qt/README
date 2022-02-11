@@ -1,0 +1,56 @@
+sudo apt-get install qt4-dev-tools
+
+
+
+down vote
+
+I don't even know what to say... it's kinda easy:
+
+
+
+slider->setRange(0, 4);
+
+connect(slider, SIGNAL(valueChanged(int)), SLOT(onSliderValueChanged(int)));
+
+
+
+...
+
+
+
+void Widget::onSliderValueChanged(int value)
+
+{
+
+    switch (value)
+
+    {
+
+    case 0:
+
+        return onPushButton0Clicked();
+
+    ...
+
+    }
+
+}
+
+
+
+void Widget::onPushButton0Clicked()
+
+{
+
+    // do stuff
+
+
+
+    slider->blockSignals(true);
+
+    slider->setValue(0);
+
+    slider->blockSignals(false);
+
+}
+

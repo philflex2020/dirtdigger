@@ -1,0 +1,15 @@
+Simple Encoder code for mechanical dudes
+
+connection
+
+        g  p p
+        n  i i
+	d  n n
+	   2 3
+
+        1  2  3
+
+
+serial A 115200
+
+have fun

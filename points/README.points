@@ -1,0 +1,95 @@
+Whats the point ?
+
+/*
+ * ON the surface a point is just that, a point in space. with x y and z 
+ * coordinates.
+ * given this location we can derive distance, elevation and azimuth to a point
+ * from zero or from another point.
+ *  As an extra bonus , given a distance (c = x->y) and two arm lengths (a) and (b) 
+ * longer that that distance we can plot the angles at each of the arms  
+ *
+ *                                    B
+ *                                    *
+ *                                  *    *
+ *                                *        *
+ *                               *           *C
+ *                              *              
+ *                           A *              D
+ *
+ * given distance A-C we want angles a1 (C-A-B) and b1 (A-B-C)
+ * we also need a2 (D-A-C)
+ *
+ * if this was a crane arm then the elevation is angle a3 (D-A_B)
+ * which is      a1 + a2 where D is at the baseline like A
+ * Also for a crane arm the elbow angle is b1 (A-B-C)
+ * So far so good.....
+ * Now it gets interesting
+ *
+ * consider the following point options
+ *   point1 x,z,y  = absolute location in space
+ *   point2 x,y,z  = distance moved in 1 sec for point1
+ *   point3 x,y,z  = forces applied to the point1 from x,y,z cordinates
+ *   point4 x,y,z  = destination path from point1 to its destination.
+ *
+ * So if we add point2 to point1 we will get a change or movement of point1
+ *
+ * recap 
+ * point p1 at x,y,z   point p2 at x1,y1,z1
+ * the distance "D" between them is sqroot((x1-x)^2 + (y1-x)^2 + (z1-z)^2) 
+
+ * if it takes 10 seconds to go from point 1 to point 2 then we can simply 
+ * divide that distance by 10 and apply that result every second.
+
+ * The structure defining the movement from p1 to p2 is (p2-p1)
+ * so a 1 second step on the journey from p1 to p2 id (p2-p1)/10
+
+ * Point mathematics.
+ * given any two points you can map them onto a plane.
+ * This means that they can be made to live on a flat earth.
+ * one of the points will be come zero and you are left with a two 
+ * dimensional object.
+ *
+ * You will have to define a rotation matrix to do that. c = cos s=sin $=angle
+ *
+ *      1   0   0        a      a1
+ *    X 0  c$ -s$        b   => b1
+ *      0  s$  c$        c      c1
+ *
+ *
+ *      c$  0  s$        a      a1
+ *    Y 0   1   0        b   => b1
+ *     -s$  0  c$        c      c1
+ *
+ *      c$ -s$  0        a      a1
+ *    Z s$  c$  0        b   => b1
+ *       0  0   1        c      c1
+ *
+ *
+ * If we give point1 a mass then we can derive changes in speed (point2) due to
+ * forces from point3
+ * the forces can come from motor or gravitational objects 
+ * all this means that we can place an object point1 of mass m and then place 
+ * some gravitational objects in the same space of mass m1 m2 m3 etc
+ * the point will experience force from these objects and start to move.
+ *
+ * hmmmm
+ * in the robot arm world one key feature is navigating the arm around 
+ *  objects in or near its path.
+ */
+
+using namespace std;
+
+int main(int argc, char * argv[])
+{
+  Point p1(1.0,1.0,1.0);
+  Point p2(1.0,1.0,2.0);
+  Point pv = p2 - p1;   // this is a vector to get from p1 to p2
+
+  cout << "hello  dist between points " << p1.distFrom(p2)<< endl;
+  cout << "p1.z " << p1.z << " p2.z " << p2.z<< endl;
+  cout << "p1  elevation " << p1.elevation() << endl;
+  cout << "p1->p2  elevation " << p1.elevation(p2) << endl;
+  cout << "p1  azimuth " << p1.azimuth() << endl;
+  cout << "p1->p2  azimuth " << p1.azimuth(p2) << endl;
+  return 0;
+}

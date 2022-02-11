@@ -1,0 +1,7 @@
+This is a good article
+
+https://spikey.si/how-raspberry-pi-zero-got-ardupilot-hopefully-flies/
+
+cd APMrover2   
+make pxfmini
+
