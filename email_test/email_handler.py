@@ -7,7 +7,7 @@
 ##--- Description: This python code will send Plain Text and HTML based emails using Gmail SMTP server
 ##------------------------------------------
 
-import ConfigParser, inspect, os
+import configparser, inspect, os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -36,13 +36,24 @@ def read_Email_Settings():
         JUNK        = config.get("EMAIL","JUNK")
 
     except Exception as error_msg:
-        print "Error while trying to read SMTP/EMAIL Settings."
-        print {"Error" : str(error_msg)}
+        print ("Error while trying to read SMTP/EMAIL Settings.")
+        #print {"Error" : str(error_msg)}
         
 #=============================================================================
 
 
-read_Email_Settings()
+#read_Email_Settings()
+MTP_ADD = "smtp.gmail.com" 
+#SMTP Server Address (For Gmail use smtp.gmail.com)
+
+SMTP_PORT = 465
+#		; SMTP Server Port (Gmail default smtp port 465)
+FROM_ADD = "sdcsiot@gmail.com"
+# ; From email Address (For Gmail you may use you email id)
+USERNAME = "sdcsiot@gmail.com"
+# ; SMTP Server User Name (for authentication)
+JUNK = "lovt"
+PASSWORD = "eegvbsaznjzh"
 
 
 class Class_eMail():
